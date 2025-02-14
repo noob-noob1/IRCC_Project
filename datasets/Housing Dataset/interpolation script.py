@@ -5,7 +5,7 @@
 import numpy as np
 import pandas as pd 
 
-df = pd.read_csv('testing.csv')
+df = pd.read_csv('number-of-households-canada-csv.csv')
 df.set_index('year', inplace=True)
 
 # Extend index to 2026
@@ -25,5 +25,5 @@ for year in df.index:
 df.reset_index(inplace=True)
 df.rename(columns={'index': 'year', 'high_growth': 'growth'}, inplace=True)
 df['growth'] = df['growth'].astype(int)
-df.to_csv('growth_forecast.csv', index=False)
+df.to_csv('number-of-households-canada-csv_interpolated.csv', index=False)
 print(df)
