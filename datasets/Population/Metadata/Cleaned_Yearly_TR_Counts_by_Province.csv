@@ -1,0 +1,617 @@
+,Year,Province,Total PRs,Resident Type,Total TRs
+0,2015,Alberta,1900.0,Permanent Residents,
+1,2015,British Columbia,1910.0,Permanent Residents,
+2,2015,Manitoba,715.0,Permanent Residents,
+3,2015,New Brunswick,125.0,Permanent Residents,
+4,2015,Newfoundland and Labrador,50.0,Permanent Residents,
+5,2015,Northwest Territories,10.0,Permanent Residents,
+6,2015,Nova Scotia,130.0,Permanent Residents,
+7,2015,Nunavut,0.0,Permanent Residents,
+8,2015,Ontario,5320.0,Permanent Residents,
+9,2015,Prince Edward Island,45.0,Permanent Residents,
+10,2015,Province/territory not stated,5.0,Permanent Residents,
+11,2015,Quebec,2090.0,Permanent Residents,
+12,2015,Saskatchewan,605.0,Permanent Residents,
+13,2015,Yukon,15.0,Permanent Residents,
+14,2016,Alberta,4685.0,Permanent Residents,
+15,2016,British Columbia,3840.0,Permanent Residents,
+16,2016,Manitoba,1185.0,Permanent Residents,
+17,2016,New Brunswick,710.0,Permanent Residents,
+18,2016,Newfoundland and Labrador,110.0,Permanent Residents,
+19,2016,Northwest Territories,10.0,Permanent Residents,
+20,2016,Nova Scotia,695.0,Permanent Residents,
+21,2016,Nunavut,5.0,Permanent Residents,
+22,2016,Ontario,10300.0,Permanent Residents,
+23,2016,Prince Edward Island,145.0,Permanent Residents,
+24,2016,Province/territory not stated,5.0,Permanent Residents,
+25,2016,Quebec,4335.0,Permanent Residents,
+26,2016,Saskatchewan,1225.0,Permanent Residents,
+27,2016,Yukon,25.0,Permanent Residents,
+28,2017,Alberta,4425.0,Permanent Residents,
+29,2017,British Columbia,3625.0,Permanent Residents,
+30,2017,Manitoba,1105.0,Permanent Residents,
+31,2017,New Brunswick,210.0,Permanent Residents,
+32,2017,Newfoundland and Labrador,50.0,Permanent Residents,
+33,2017,Northwest Territories,40.0,Permanent Residents,
+34,2017,Nova Scotia,345.0,Permanent Residents,
+35,2017,Nunavut,0.0,Permanent Residents,
+36,2017,Ontario,7320.0,Permanent Residents,
+37,2017,Prince Edward Island,150.0,Permanent Residents,
+38,2017,Province/territory not stated,0.0,Permanent Residents,
+39,2017,Quebec,3295.0,Permanent Residents,
+40,2017,Saskatchewan,1295.0,Permanent Residents,
+41,2017,Yukon,25.0,Permanent Residents,
+42,2018,Alberta,3045.0,Permanent Residents,
+43,2018,British Columbia,4045.0,Permanent Residents,
+44,2018,Manitoba,970.0,Permanent Residents,
+45,2018,New Brunswick,285.0,Permanent Residents,
+46,2018,Newfoundland and Labrador,65.0,Permanent Residents,
+47,2018,Northwest Territories,30.0,Permanent Residents,
+48,2018,Nova Scotia,360.0,Permanent Residents,
+49,2018,Nunavut,0.0,Permanent Residents,
+50,2018,Ontario,10910.0,Permanent Residents,
+51,2018,Prince Edward Island,100.0,Permanent Residents,
+52,2018,Province/territory not stated,0.0,Permanent Residents,
+53,2018,Quebec,2640.0,Permanent Residents,
+54,2018,Saskatchewan,1065.0,Permanent Residents,
+55,2018,Yukon,30.0,Permanent Residents,
+56,2019,Alberta,2550.0,Permanent Residents,
+57,2019,British Columbia,2640.0,Permanent Residents,
+58,2019,Manitoba,840.0,Permanent Residents,
+59,2019,New Brunswick,210.0,Permanent Residents,
+60,2019,Newfoundland and Labrador,85.0,Permanent Residents,
+61,2019,Northwest Territories,15.0,Permanent Residents,
+62,2019,Nova Scotia,370.0,Permanent Residents,
+63,2019,Nunavut,0.0,Permanent Residents,
+64,2019,Ontario,8530.0,Permanent Residents,
+65,2019,Prince Edward Island,135.0,Permanent Residents,
+66,2019,Province/territory not stated,0.0,Permanent Residents,
+67,2019,Quebec,2475.0,Permanent Residents,
+68,2019,Saskatchewan,765.0,Permanent Residents,
+69,2019,Yukon,15.0,Permanent Residents,
+70,2020,Alberta,2840.0,Permanent Residents,
+71,2020,British Columbia,4210.0,Permanent Residents,
+72,2020,Manitoba,1050.0,Permanent Residents,
+73,2020,New Brunswick,395.0,Permanent Residents,
+74,2020,Newfoundland and Labrador,90.0,Permanent Residents,
+75,2020,Northwest Territories,5.0,Permanent Residents,
+76,2020,Nova Scotia,400.0,Permanent Residents,
+77,2020,Nunavut,5.0,Permanent Residents,
+78,2020,Ontario,11330.0,Permanent Residents,
+79,2020,Prince Edward Island,185.0,Permanent Residents,
+80,2020,Province/territory not stated,0.0,Permanent Residents,
+81,2020,Quebec,3195.0,Permanent Residents,
+82,2020,Saskatchewan,995.0,Permanent Residents,
+83,2020,Yukon,20.0,Permanent Residents,
+84,2021,Alberta,2670.0,Permanent Residents,
+85,2021,British Columbia,3240.0,Permanent Residents,
+86,2021,Manitoba,1410.0,Permanent Residents,
+87,2021,New Brunswick,260.0,Permanent Residents,
+88,2021,Newfoundland and Labrador,45.0,Permanent Residents,
+89,2021,Northwest Territories,10.0,Permanent Residents,
+90,2021,Nova Scotia,325.0,Permanent Residents,
+91,2021,Nunavut,0.0,Permanent Residents,
+92,2021,Ontario,11840.0,Permanent Residents,
+93,2021,Prince Edward Island,110.0,Permanent Residents,
+94,2021,Province/territory not stated,0.0,Permanent Residents,
+95,2021,Quebec,3725.0,Permanent Residents,
+96,2021,Saskatchewan,1055.0,Permanent Residents,
+97,2021,Yukon,10.0,Permanent Residents,
+98,2022,Alberta,3370.0,Permanent Residents,
+99,2022,British Columbia,6825.0,Permanent Residents,
+100,2022,Manitoba,1490.0,Permanent Residents,
+101,2022,New Brunswick,600.0,Permanent Residents,
+102,2022,Newfoundland and Labrador,195.0,Permanent Residents,
+103,2022,Northwest Territories,20.0,Permanent Residents,
+104,2022,Nova Scotia,1035.0,Permanent Residents,
+105,2022,Nunavut,5.0,Permanent Residents,
+106,2022,Ontario,17265.0,Permanent Residents,
+107,2022,Prince Edward Island,200.0,Permanent Residents,
+108,2022,Province/territory not stated,5.0,Permanent Residents,
+109,2022,Quebec,3270.0,Permanent Residents,
+110,2022,Saskatchewan,1135.0,Permanent Residents,
+111,2022,Yukon,40.0,Permanent Residents,
+112,2023,Alberta,5705.0,Permanent Residents,
+113,2023,British Columbia,7990.0,Permanent Residents,
+114,2023,Manitoba,2795.0,Permanent Residents,
+115,2023,New Brunswick,1200.0,Permanent Residents,
+116,2023,Newfoundland and Labrador,1085.0,Permanent Residents,
+117,2023,Northwest Territories,35.0,Permanent Residents,
+118,2023,Nova Scotia,1745.0,Permanent Residents,
+119,2023,Nunavut,0.0,Permanent Residents,
+120,2023,Ontario,21610.0,Permanent Residents,
+121,2023,Prince Edward Island,640.0,Permanent Residents,
+122,2023,Province/territory not stated,0.0,Permanent Residents,
+123,2023,Quebec,5995.0,Permanent Residents,
+124,2023,Saskatchewan,2040.0,Permanent Residents,
+125,2023,Yukon,105.0,Permanent Residents,
+126,2024,Alberta,5455.0,Permanent Residents,
+127,2024,British Columbia,7280.0,Permanent Residents,
+128,2024,Manitoba,2210.0,Permanent Residents,
+129,2024,New Brunswick,1690.0,Permanent Residents,
+130,2024,Newfoundland and Labrador,490.0,Permanent Residents,
+131,2024,Northwest Territories,50.0,Permanent Residents,
+132,2024,Nova Scotia,1795.0,Permanent Residents,
+133,2024,Nunavut,0.0,Permanent Residents,
+134,2024,Ontario,21945.0,Permanent Residents,
+135,2024,Prince Edward Island,545.0,Permanent Residents,
+136,2024,Province/territory not stated,0.0,Permanent Residents,
+137,2024,Quebec,4170.0,Permanent Residents,
+138,2024,Saskatchewan,1990.0,Permanent Residents,
+139,2024,Yukon,140.0,Permanent Residents,
+140,2015,Alberta,0.0,Foreign Workers,2530.0
+141,2015,British Columbia,0.0,Foreign Workers,2975.0
+143,2015,Manitoba,0.0,Foreign Workers,365.0
+144,2015,New Brunswick,0.0,Foreign Workers,120.0
+145,2015,Newfoundland and Labrador,0.0,Foreign Workers,120.0
+146,2015,Northwest Territories,0.0,Foreign Workers,25.0
+148,2015,Nova Scotia,0.0,Foreign Workers,190.0
+149,2015,Nunavut,0.0,Foreign Workers,0.0
+150,2015,Ontario,0.0,Foreign Workers,4590.0
+151,2015,Prince Edward Island,0.0,Foreign Workers,30.0
+152,2015,Province/territory not stated,0.0,Foreign Workers,290.0
+153,2015,Quebec,0.0,Foreign Workers,2515.0
+154,2015,Saskatchewan,0.0,Foreign Workers,455.0
+157,2015,Yukon,0.0,Foreign Workers,10.0
+158,2016,Alberta,0.0,Foreign Workers,1985.0
+159,2016,British Columbia,0.0,Foreign Workers,3015.0
+161,2016,Manitoba,0.0,Foreign Workers,450.0
+162,2016,New Brunswick,0.0,Foreign Workers,105.0
+163,2016,Newfoundland and Labrador,0.0,Foreign Workers,155.0
+164,2016,Northwest Territories,0.0,Foreign Workers,15.0
+166,2016,Nova Scotia,0.0,Foreign Workers,250.0
+167,2016,Nunavut,0.0,Foreign Workers,0.0
+168,2016,Ontario,0.0,Foreign Workers,5605.0
+169,2016,Prince Edward Island,0.0,Foreign Workers,45.0
+170,2016,Province/territory not stated,0.0,Foreign Workers,1040.0
+171,2016,Quebec,0.0,Foreign Workers,2710.0
+172,2016,Saskatchewan,0.0,Foreign Workers,505.0
+175,2016,Yukon,0.0,Foreign Workers,30.0
+176,2017,Alberta,0.0,Foreign Workers,1785.0
+177,2017,British Columbia,0.0,Foreign Workers,2935.0
+179,2017,Manitoba,0.0,Foreign Workers,470.0
+180,2017,New Brunswick,0.0,Foreign Workers,115.0
+181,2017,Newfoundland and Labrador,0.0,Foreign Workers,105.0
+182,2017,Northwest Territories,0.0,Foreign Workers,20.0
+184,2017,Nova Scotia,0.0,Foreign Workers,265.0
+185,2017,Nunavut,0.0,Foreign Workers,0.0
+186,2017,Ontario,0.0,Foreign Workers,4850.0
+187,2017,Prince Edward Island,0.0,Foreign Workers,55.0
+188,2017,Province/territory not stated,0.0,Foreign Workers,1745.0
+189,2017,Quebec,0.0,Foreign Workers,2895.0
+190,2017,Saskatchewan,0.0,Foreign Workers,400.0
+193,2017,Yukon,0.0,Foreign Workers,20.0
+194,2018,Alberta,0.0,Foreign Workers,2330.0
+195,2018,British Columbia,0.0,Foreign Workers,4275.0
+197,2018,Manitoba,0.0,Foreign Workers,875.0
+198,2018,New Brunswick,0.0,Foreign Workers,165.0
+199,2018,Newfoundland and Labrador,0.0,Foreign Workers,165.0
+200,2018,Northwest Territories,0.0,Foreign Workers,20.0
+202,2018,Nova Scotia,0.0,Foreign Workers,345.0
+203,2018,Nunavut,0.0,Foreign Workers,0.0
+204,2018,Ontario,0.0,Foreign Workers,7530.0
+205,2018,Prince Edward Island,0.0,Foreign Workers,90.0
+206,2018,Province/territory not stated,0.0,Foreign Workers,2510.0
+207,2018,Quebec,0.0,Foreign Workers,3980.0
+208,2018,Saskatchewan,0.0,Foreign Workers,545.0
+211,2018,Yukon,0.0,Foreign Workers,45.0
+212,2019,Alberta,0.0,Foreign Workers,2095.0
+213,2019,British Columbia,0.0,Foreign Workers,4525.0
+215,2019,Manitoba,0.0,Foreign Workers,900.0
+216,2019,New Brunswick,0.0,Foreign Workers,255.0
+217,2019,Newfoundland and Labrador,0.0,Foreign Workers,170.0
+218,2019,Northwest Territories,0.0,Foreign Workers,45.0
+220,2019,Nova Scotia,0.0,Foreign Workers,390.0
+221,2019,Nunavut,0.0,Foreign Workers,0.0
+222,2019,Ontario,0.0,Foreign Workers,9055.0
+223,2019,Prince Edward Island,0.0,Foreign Workers,120.0
+224,2019,Province/territory not stated,0.0,Foreign Workers,2055.0
+225,2019,Quebec,0.0,Foreign Workers,4470.0
+226,2019,Saskatchewan,0.0,Foreign Workers,470.0
+229,2019,Yukon,0.0,Foreign Workers,50.0
+230,2020,Alberta,0.0,Foreign Workers,1865.0
+231,2020,British Columbia,0.0,Foreign Workers,5010.0
+233,2020,Manitoba,0.0,Foreign Workers,1015.0
+234,2020,New Brunswick,0.0,Foreign Workers,255.0
+235,2020,Newfoundland and Labrador,0.0,Foreign Workers,145.0
+236,2020,Northwest Territories,0.0,Foreign Workers,30.0
+238,2020,Nova Scotia,0.0,Foreign Workers,565.0
+239,2020,Nunavut,0.0,Foreign Workers,0.0
+240,2020,Ontario,0.0,Foreign Workers,10680.0
+241,2020,Prince Edward Island,0.0,Foreign Workers,165.0
+242,2020,Province/territory not stated,0.0,Foreign Workers,2010.0
+243,2020,Quebec,0.0,Foreign Workers,4885.0
+244,2020,Saskatchewan,0.0,Foreign Workers,475.0
+247,2020,Yukon,0.0,Foreign Workers,70.0
+248,2021,Alberta,0.0,Foreign Workers,2610.0
+249,2021,British Columbia,0.0,Foreign Workers,6755.0
+251,2021,Manitoba,0.0,Foreign Workers,1850.0
+252,2021,New Brunswick,0.0,Foreign Workers,340.0
+253,2021,Newfoundland and Labrador,0.0,Foreign Workers,170.0
+254,2021,Northwest Territories,0.0,Foreign Workers,20.0
+256,2021,Nova Scotia,0.0,Foreign Workers,730.0
+257,2021,Nunavut,0.0,Foreign Workers,0.0
+258,2021,Ontario,0.0,Foreign Workers,14905.0
+259,2021,Prince Edward Island,0.0,Foreign Workers,245.0
+260,2021,Province/territory not stated,0.0,Foreign Workers,240.0
+261,2021,Quebec,0.0,Foreign Workers,6600.0
+262,2021,Saskatchewan,0.0,Foreign Workers,710.0
+265,2021,Yukon,0.0,Foreign Workers,80.0
+266,2022,Alberta,0.0,Foreign Workers,1640.0
+267,2022,British Columbia,0.0,Foreign Workers,5365.0
+269,2022,Manitoba,0.0,Foreign Workers,810.0
+270,2022,New Brunswick,0.0,Foreign Workers,255.0
+271,2022,Newfoundland and Labrador,0.0,Foreign Workers,130.0
+272,2022,Northwest Territories,0.0,Foreign Workers,20.0
+274,2022,Nova Scotia,0.0,Foreign Workers,410.0
+275,2022,Nunavut,0.0,Foreign Workers,0.0
+276,2022,Ontario,0.0,Foreign Workers,10865.0
+277,2022,Prince Edward Island,0.0,Foreign Workers,140.0
+278,2022,Province/territory not stated,0.0,Foreign Workers,925.0
+279,2022,Quebec,0.0,Foreign Workers,4015.0
+280,2022,Saskatchewan,0.0,Foreign Workers,450.0
+283,2022,Yukon,0.0,Foreign Workers,30.0
+284,2023,Alberta,0.0,Foreign Workers,4660.0
+285,2023,British Columbia,0.0,Foreign Workers,8120.0
+287,2023,Manitoba,0.0,Foreign Workers,2620.0
+288,2023,New Brunswick,0.0,Foreign Workers,635.0
+289,2023,Newfoundland and Labrador,0.0,Foreign Workers,425.0
+290,2023,Northwest Territories,0.0,Foreign Workers,35.0
+292,2023,Nova Scotia,0.0,Foreign Workers,1140.0
+293,2023,Nunavut,0.0,Foreign Workers,5.0
+294,2023,Ontario,0.0,Foreign Workers,24940.0
+295,2023,Prince Edward Island,0.0,Foreign Workers,265.0
+296,2023,Province/territory not stated,0.0,Foreign Workers,3995.0
+297,2023,Quebec,0.0,Foreign Workers,5730.0
+298,2023,Saskatchewan,0.0,Foreign Workers,1005.0
+301,2023,Yukon,0.0,Foreign Workers,60.0
+302,2024,Alberta,0.0,Foreign Workers,5790.0
+303,2024,British Columbia,0.0,Foreign Workers,11590.0
+305,2024,Manitoba,0.0,Foreign Workers,2485.0
+306,2024,New Brunswick,0.0,Foreign Workers,960.0
+307,2024,Newfoundland and Labrador,0.0,Foreign Workers,590.0
+308,2024,Northwest Territories,0.0,Foreign Workers,25.0
+310,2024,Nova Scotia,0.0,Foreign Workers,1685.0
+311,2024,Nunavut,0.0,Foreign Workers,5.0
+312,2024,Ontario,0.0,Foreign Workers,32320.0
+313,2024,Prince Edward Island,0.0,Foreign Workers,295.0
+314,2024,Province/territory not stated,0.0,Foreign Workers,7805.0
+315,2024,Quebec,0.0,Foreign Workers,7420.0
+316,2024,Saskatchewan,0.0,Foreign Workers,1335.0
+319,2024,Yukon,0.0,Foreign Workers,85.0
+320,2000,Alberta,0.0,International Students,9430.0
+321,2000,British Columbia,0.0,International Students,32885.0
+323,2000,Manitoba,0.0,International Students,2830.0
+324,2000,New Brunswick,0.0,International Students,1825.0
+325,2000,Newfoundland and Labrador,0.0,International Students,690.0
+326,2000,Northwest Territories,0.0,International Students,25.0
+328,2000,Nova Scotia,0.0,International Students,3075.0
+329,2000,Nunavut,0.0,International Students,0.0
+330,2000,Ontario,0.0,International Students,46120.0
+331,2000,Prince Edward Island,0.0,International Students,235.0
+332,2000,Province / Territory not stated,0.0,International Students,0.0
+333,2000,Quebec,0.0,International Students,22770.0
+334,2000,Saskatchewan,0.0,International Students,2690.0
+337,2000,Yukon,0.0,International Students,45.0
+338,2001,Alberta,0.0,International Students,10640.0
+339,2001,British Columbia,0.0,International Students,41120.0
+341,2001,Manitoba,0.0,International Students,3205.0
+342,2001,New Brunswick,0.0,International Students,2305.0
+343,2001,Newfoundland and Labrador,0.0,International Students,725.0
+344,2001,Northwest Territories,0.0,International Students,30.0
+346,2001,Nova Scotia,0.0,International Students,3685.0
+347,2001,Nunavut,0.0,International Students,0.0
+348,2001,Ontario,0.0,International Students,55765.0
+349,2001,Prince Edward Island,0.0,International Students,255.0
+350,2001,Province / Territory not stated,0.0,International Students,0.0
+351,2001,Quebec,0.0,International Students,25090.0
+352,2001,Saskatchewan,0.0,International Students,3055.0
+355,2001,Yukon,0.0,International Students,25.0
+356,2002,Alberta,0.0,International Students,11065.0
+357,2002,British Columbia,0.0,International Students,44250.0
+359,2002,Manitoba,0.0,International Students,3715.0
+360,2002,New Brunswick,0.0,International Students,2775.0
+361,2002,Newfoundland and Labrador,0.0,International Students,785.0
+362,2002,Northwest Territories,0.0,International Students,30.0
+364,2002,Nova Scotia,0.0,International Students,4400.0
+365,2002,Nunavut,0.0,International Students,5.0
+366,2002,Ontario,0.0,International Students,62555.0
+367,2002,Prince Edward Island,0.0,International Students,260.0
+368,2002,Province / Territory not stated,0.0,International Students,0.0
+369,2002,Quebec,0.0,International Students,24910.0
+370,2002,Saskatchewan,0.0,International Students,3270.0
+373,2002,Yukon,0.0,International Students,50.0
+374,2003,Alberta,0.0,International Students,11580.0
+375,2003,British Columbia,0.0,International Students,46405.0
+377,2003,Manitoba,0.0,International Students,4250.0
+378,2003,New Brunswick,0.0,International Students,3025.0
+379,2003,Newfoundland and Labrador,0.0,International Students,895.0
+380,2003,Northwest Territories,0.0,International Students,55.0
+382,2003,Nova Scotia,0.0,International Students,5095.0
+383,2003,Nunavut,0.0,International Students,5.0
+384,2003,Ontario,0.0,International Students,64085.0
+385,2003,Prince Edward Island,0.0,International Students,285.0
+386,2003,Province / Territory not stated,0.0,International Students,0.0
+387,2003,Quebec,0.0,International Students,25200.0
+388,2003,Saskatchewan,0.0,International Students,3520.0
+391,2003,Yukon,0.0,International Students,30.0
+392,2004,Alberta,0.0,International Students,11755.0
+393,2004,British Columbia,0.0,International Students,47505.0
+395,2004,Manitoba,0.0,International Students,4710.0
+396,2004,New Brunswick,0.0,International Students,3200.0
+397,2004,Newfoundland and Labrador,0.0,International Students,910.0
+398,2004,Northwest Territories,0.0,International Students,50.0
+400,2004,Nova Scotia,0.0,International Students,5430.0
+401,2004,Nunavut,0.0,International Students,10.0
+402,2004,Ontario,0.0,International Students,65465.0
+403,2004,Prince Edward Island,0.0,International Students,315.0
+404,2004,Province / Territory not stated,0.0,International Students,0.0
+405,2004,Quebec,0.0,International Students,25595.0
+406,2004,Saskatchewan,0.0,International Students,3560.0
+409,2004,Yukon,0.0,International Students,35.0
+410,2005,Alberta,0.0,International Students,12200.0
+411,2005,British Columbia,0.0,International Students,49180.0
+413,2005,Manitoba,0.0,International Students,4950.0
+414,2005,New Brunswick,0.0,International Students,3225.0
+415,2005,Newfoundland and Labrador,0.0,International Students,1075.0
+416,2005,Northwest Territories,0.0,International Students,60.0
+418,2005,Nova Scotia,0.0,International Students,5425.0
+419,2005,Nunavut,0.0,International Students,5.0
+420,2005,Ontario,0.0,International Students,64605.0
+421,2005,Prince Edward Island,0.0,International Students,345.0
+422,2005,Province / Territory not stated,0.0,International Students,0.0
+423,2005,Quebec,0.0,International Students,25605.0
+424,2005,Saskatchewan,0.0,International Students,3690.0
+427,2005,Yukon,0.0,International Students,30.0
+428,2006,Alberta,0.0,International Students,12380.0
+429,2006,British Columbia,0.0,International Students,50750.0
+431,2006,Manitoba,0.0,International Students,4990.0
+432,2006,New Brunswick,0.0,International Students,3120.0
+433,2006,Newfoundland and Labrador,0.0,International Students,1210.0
+434,2006,Northwest Territories,0.0,International Students,50.0
+436,2006,Nova Scotia,0.0,International Students,5380.0
+437,2006,Nunavut,0.0,International Students,0.0
+438,2006,Ontario,0.0,International Students,64405.0
+439,2006,Prince Edward Island,0.0,International Students,390.0
+440,2006,Province / Territory not stated,0.0,International Students,0.0
+441,2006,Quebec,0.0,International Students,26225.0
+442,2006,Saskatchewan,0.0,International Students,3355.0
+445,2006,Yukon,0.0,International Students,25.0
+446,2007,Alberta,0.0,International Students,13110.0
+447,2007,British Columbia,0.0,International Students,53070.0
+449,2007,Manitoba,0.0,International Students,5065.0
+450,2007,New Brunswick,0.0,International Students,3195.0
+451,2007,Newfoundland and Labrador,0.0,International Students,1415.0
+452,2007,Northwest Territories,0.0,International Students,45.0
+454,2007,Nova Scotia,0.0,International Students,5400.0
+455,2007,Nunavut,0.0,International Students,0.0
+456,2007,Ontario,0.0,International Students,66360.0
+457,2007,Prince Edward Island,0.0,International Students,470.0
+458,2007,Province / Territory not stated,0.0,International Students,0.0
+459,2007,Quebec,0.0,International Students,27575.0
+460,2007,Saskatchewan,0.0,International Students,3325.0
+463,2007,Yukon,0.0,International Students,35.0
+464,2008,Alberta,0.0,International Students,13775.0
+465,2008,British Columbia,0.0,International Students,55120.0
+467,2008,Manitoba,0.0,International Students,4735.0
+468,2008,New Brunswick,0.0,International Students,3210.0
+469,2008,Newfoundland and Labrador,0.0,International Students,1485.0
+470,2008,Northwest Territories,0.0,International Students,40.0
+472,2008,Nova Scotia,0.0,International Students,5745.0
+473,2008,Nunavut,0.0,International Students,0.0
+474,2008,Ontario,0.0,International Students,67690.0
+475,2008,Prince Edward Island,0.0,International Students,520.0
+476,2008,Province / Territory not stated,0.0,International Students,0.0
+477,2008,Quebec,0.0,International Students,28270.0
+478,2008,Saskatchewan,0.0,International Students,3470.0
+481,2008,Yukon,0.0,International Students,40.0
+482,2009,Alberta,0.0,International Students,15090.0
+483,2009,British Columbia,0.0,International Students,60035.0
+485,2009,Manitoba,0.0,International Students,5090.0
+486,2009,New Brunswick,0.0,International Students,3260.0
+487,2009,Newfoundland and Labrador,0.0,International Students,1485.0
+488,2009,Northwest Territories,0.0,International Students,25.0
+490,2009,Nova Scotia,0.0,International Students,6410.0
+491,2009,Nunavut,0.0,International Students,0.0
+492,2009,Ontario,0.0,International Students,76855.0
+493,2009,Prince Edward Island,0.0,International Students,630.0
+494,2009,Province / Territory not stated,0.0,International Students,0.0
+495,2009,Quebec,0.0,International Students,31315.0
+496,2009,Saskatchewan,0.0,International Students,3730.0
+499,2009,Yukon,0.0,International Students,35.0
+500,2010,Alberta,0.0,International Students,15400.0
+501,2010,British Columbia,0.0,International Students,65135.0
+503,2010,Manitoba,0.0,International Students,5250.0
+504,2010,New Brunswick,0.0,International Students,3465.0
+505,2010,Newfoundland and Labrador,0.0,International Students,1620.0
+506,2010,Northwest Territories,0.0,International Students,20.0
+508,2010,Nova Scotia,0.0,International Students,7655.0
+509,2010,Nunavut,0.0,International Students,0.0
+510,2010,Ontario,0.0,International Students,89180.0
+511,2010,Prince Edward Island,0.0,International Students,685.0
+512,2010,Province / Territory not stated,0.0,International Students,0.0
+513,2010,Quebec,0.0,International Students,32955.0
+514,2010,Saskatchewan,0.0,International Students,3860.0
+517,2010,Yukon,0.0,International Students,25.0
+518,2011,Alberta,0.0,International Students,17735.0
+519,2011,British Columbia,0.0,International Students,67050.0
+521,2011,Manitoba,0.0,International Students,6480.0
+522,2011,New Brunswick,0.0,International Students,3780.0
+523,2011,Newfoundland and Labrador,0.0,International Students,1915.0
+524,2011,Northwest Territories,0.0,International Students,25.0
+526,2011,Nova Scotia,0.0,International Students,8860.0
+527,2011,Nunavut,0.0,International Students,0.0
+528,2011,Ontario,0.0,International Students,101765.0
+529,2011,Prince Edward Island,0.0,International Students,780.0
+530,2011,Province / Territory not stated,0.0,International Students,0.0
+531,2011,Quebec,0.0,International Students,35370.0
+532,2011,Saskatchewan,0.0,International Students,4635.0
+535,2011,Yukon,0.0,International Students,45.0
+536,2012,Alberta,0.0,International Students,19305.0
+537,2012,British Columbia,0.0,International Students,70140.0
+539,2012,Manitoba,0.0,International Students,7955.0
+540,2012,New Brunswick,0.0,International Students,4115.0
+541,2012,Newfoundland and Labrador,0.0,International Students,2300.0
+542,2012,Northwest Territories,0.0,International Students,30.0
+544,2012,Nova Scotia,0.0,International Students,10250.0
+545,2012,Nunavut,0.0,International Students,0.0
+546,2012,Ontario,0.0,International Students,114335.0
+547,2012,Prince Edward Island,0.0,International Students,880.0
+548,2012,Province / Territory not stated,0.0,International Students,0.0
+549,2012,Quebec,0.0,International Students,39845.0
+550,2012,Saskatchewan,0.0,International Students,5480.0
+553,2012,Yukon,0.0,International Students,50.0
+554,2013,Alberta,0.0,International Students,21840.0
+555,2013,British Columbia,0.0,International Students,74065.0
+557,2013,Manitoba,0.0,International Students,9470.0
+558,2013,New Brunswick,0.0,International Students,4575.0
+559,2013,Newfoundland and Labrador,0.0,International Students,2485.0
+560,2013,Northwest Territories,0.0,International Students,35.0
+562,2013,Nova Scotia,0.0,International Students,10885.0
+563,2013,Nunavut,0.0,International Students,5.0
+564,2013,Ontario,0.0,International Students,127540.0
+565,2013,Prince Edward Island,0.0,International Students,1035.0
+566,2013,Province / Territory not stated,0.0,International Students,0.0
+567,2013,Quebec,0.0,International Students,43180.0
+568,2013,Saskatchewan,0.0,International Students,6385.0
+571,2013,Yukon,0.0,International Students,30.0
+572,2014,Alberta,0.0,International Students,23155.0
+573,2014,British Columbia,0.0,International Students,80880.0
+575,2014,Manitoba,0.0,International Students,10815.0
+576,2014,New Brunswick,0.0,International Students,4705.0
+577,2014,Newfoundland and Labrador,0.0,International Students,2740.0
+578,2014,Northwest Territories,0.0,International Students,30.0
+580,2014,Nova Scotia,0.0,International Students,11170.0
+581,2014,Nunavut,0.0,International Students,5.0
+582,2014,Ontario,0.0,International Students,139890.0
+583,2014,Prince Edward Island,0.0,International Students,1290.0
+584,2014,Province / Territory not stated,0.0,International Students,0.0
+585,2014,Quebec,0.0,International Students,48520.0
+586,2014,Saskatchewan,0.0,International Students,6840.0
+589,2014,Yukon,0.0,International Students,45.0
+590,2015,Alberta,0.0,International Students,22970.0
+591,2015,British Columbia,0.0,International Students,87240.0
+593,2015,Manitoba,0.0,International Students,11890.0
+594,2015,New Brunswick,0.0,International Students,4595.0
+595,2015,Newfoundland and Labrador,0.0,International Students,2965.0
+596,2015,Northwest Territories,0.0,International Students,25.0
+598,2015,Nova Scotia,0.0,International Students,11515.0
+599,2015,Nunavut,0.0,International Students,5.0
+600,2015,Ontario,0.0,International Students,151610.0
+601,2015,Prince Edward Island,0.0,International Students,1610.0
+602,2015,Province / Territory not stated,0.0,International Students,35.0
+603,2015,Quebec,0.0,International Students,50805.0
+604,2015,Saskatchewan,0.0,International Students,7000.0
+607,2015,Yukon,0.0,International Students,40.0
+608,2016,Alberta,0.0,International Students,25225.0
+609,2016,British Columbia,0.0,International Students,100060.0
+611,2016,Manitoba,0.0,International Students,13770.0
+612,2016,New Brunswick,0.0,International Students,4660.0
+613,2016,Newfoundland and Labrador,0.0,International Students,3340.0
+614,2016,Northwest Territories,0.0,International Students,30.0
+616,2016,Nova Scotia,0.0,International Students,12365.0
+617,2016,Nunavut,0.0,International Students,0.0
+618,2016,Ontario,0.0,International Students,186060.0
+619,2016,Prince Edward Island,0.0,International Students,2060.0
+620,2016,Province / Territory not stated,0.0,International Students,135.0
+621,2016,Quebec,0.0,International Students,55085.0
+622,2016,Saskatchewan,0.0,International Students,7690.0
+625,2016,Yukon,0.0,International Students,65.0
+626,2017,Alberta,0.0,International Students,26905.0
+627,2017,British Columbia,0.0,International Students,116535.0
+629,2017,Manitoba,0.0,International Students,16420.0
+630,2017,New Brunswick,0.0,International Students,4900.0
+631,2017,Newfoundland and Labrador,0.0,International Students,3720.0
+632,2017,Northwest Territories,0.0,International Students,30.0
+634,2017,Nova Scotia,0.0,International Students,13585.0
+635,2017,Nunavut,0.0,International Students,0.0
+636,2017,Ontario,0.0,International Students,236080.0
+637,2017,Prince Edward Island,0.0,International Students,2500.0
+638,2017,Province / Territory not stated,0.0,International Students,135.0
+639,2017,Quebec,0.0,International Students,61460.0
+640,2017,Saskatchewan,0.0,International Students,8245.0
+643,2017,Yukon,0.0,International Students,215.0
+644,2018,Alberta,0.0,International Students,29840.0
+645,2018,British Columbia,0.0,International Students,132765.0
+647,2018,Manitoba,0.0,International Students,18630.0
+648,2018,New Brunswick,0.0,International Students,5810.0
+649,2018,Newfoundland and Labrador,0.0,International Students,4100.0
+650,2018,Northwest Territories,0.0,International Students,35.0
+652,2018,Nova Scotia,0.0,International Students,16205.0
+653,2018,Nunavut,0.0,International Students,5.0
+654,2018,Ontario,0.0,International Students,275365.0
+655,2018,Prince Edward Island,0.0,International Students,3200.0
+656,2018,Province / Territory not stated,0.0,International Students,970.0
+657,2018,Quebec,0.0,International Students,70290.0
+658,2018,Saskatchewan,0.0,International Students,9480.0
+661,2018,Yukon,0.0,International Students,230.0
+662,2019,Alberta,0.0,International Students,32915.0
+663,2019,British Columbia,0.0,International Students,144280.0
+665,2019,Manitoba,0.0,International Students,19295.0
+666,2019,New Brunswick,0.0,International Students,6880.0
+667,2019,Newfoundland and Labrador,0.0,International Students,4670.0
+668,2019,Northwest Territories,0.0,International Students,35.0
+670,2019,Nova Scotia,0.0,International Students,18570.0
+671,2019,Nunavut,0.0,International Students,10.0
+672,2019,Ontario,0.0,International Students,306070.0
+673,2019,Prince Edward Island,0.0,International Students,3670.0
+674,2019,Province / Territory not stated,0.0,International Students,2225.0
+675,2019,Quebec,0.0,International Students,88100.0
+676,2019,Saskatchewan,0.0,International Students,10780.0
+679,2019,Yukon,0.0,International Students,265.0
+680,2020,Alberta,0.0,International Students,27680.0
+681,2020,British Columbia,0.0,International Students,118405.0
+683,2020,Manitoba,0.0,International Students,16665.0
+684,2020,New Brunswick,0.0,International Students,5430.0
+685,2020,Newfoundland and Labrador,0.0,International Students,3905.0
+686,2020,Northwest Territories,0.0,International Students,30.0
+688,2020,Nova Scotia,0.0,International Students,14705.0
+689,2020,Nunavut,0.0,International Students,10.0
+690,2020,Ontario,0.0,International Students,242595.0
+691,2020,Prince Edward Island,0.0,International Students,3385.0
+692,2020,Province / Territory not stated,0.0,International Students,1715.0
+693,2020,Quebec,0.0,International Students,83225.0
+694,2020,Saskatchewan,0.0,International Students,9270.0
+697,2020,Yukon,0.0,International Students,180.0
+698,2021,Alberta,0.0,International Students,32445.0
+699,2021,British Columbia,0.0,International Students,134785.0
+701,2021,Manitoba,0.0,International Students,18700.0
+702,2021,New Brunswick,0.0,International Students,7875.0
+703,2021,Newfoundland and Labrador,0.0,International Students,4945.0
+704,2021,Northwest Territories,0.0,International Students,25.0
+706,2021,Nova Scotia,0.0,International Students,15690.0
+707,2021,Nunavut,0.0,International Students,10.0
+708,2021,Ontario,0.0,International Students,291530.0
+709,2021,Prince Edward Island,0.0,International Students,3715.0
+710,2021,Province / Territory not stated,0.0,International Students,4125.0
+711,2021,Quebec,0.0,International Students,92165.0
+712,2021,Saskatchewan,0.0,International Students,10350.0
+715,2021,Yukon,0.0,International Students,225.0
+716,2022,Alberta,0.0,International Students,43485.0
+717,2022,British Columbia,0.0,International Students,165335.0
+719,2022,Manitoba,0.0,International Students,22160.0
+720,2022,New Brunswick,0.0,International Students,11445.0
+721,2022,Newfoundland and Labrador,0.0,International Students,6210.0
+722,2022,Northwest Territories,0.0,International Students,40.0
+724,2022,Nova Scotia,0.0,International Students,20805.0
+725,2022,Nunavut,0.0,International Students,10.0
+726,2022,Ontario,0.0,International Students,412460.0
+727,2022,Prince Edward Island,0.0,International Students,4475.0
+728,2022,Province / Territory not stated,0.0,International Students,10095.0
+729,2022,Quebec,0.0,International Students,94460.0
+730,2022,Saskatchewan,0.0,International Students,13140.0
+733,2022,Yukon,0.0,International Students,250.0
+734,2023,Alberta,0.0,International Students,62750.0
+735,2023,British Columbia,0.0,International Students,204100.0
+737,2023,Manitoba,0.0,International Students,27675.0
+738,2023,New Brunswick,0.0,International Students,15750.0
+739,2023,Newfoundland and Labrador,0.0,International Students,7240.0
+740,2023,Northwest Territories,0.0,International Students,55.0
+742,2023,Nova Scotia,0.0,International Students,26490.0
+743,2023,Nunavut,0.0,International Students,10.0
+744,2023,Ontario,0.0,International Students,539480.0
+745,2023,Prince Edward Island,0.0,International Students,5225.0
+746,2023,Province / Territory not stated,0.0,International Students,16345.0
+747,2023,Quebec,0.0,International Students,117745.0
+748,2023,Saskatchewan,0.0,International Students,17815.0
+751,2023,Yukon,0.0,International Students,310.0
