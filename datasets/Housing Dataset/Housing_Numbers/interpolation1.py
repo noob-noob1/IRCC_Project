@@ -39,10 +39,10 @@ def process_file(input_file, output_file):
     df.to_csv(output_file, index=False)
     
 # Processing to final output:
-process_file('datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-Alberta.csv', 'number-of-households-canada-provinces-Alberta_interpolated.csv')
-process_file('datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-Manitoba.csv', 'number-of-households-canada-provinces-Manitoba_interpolated.csv')
-process_file('datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-NewBrunswick.csv', 'number-of-households-canada-provinces-NewBrunswick_interpolated.csv')
-process_file('datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-NewFoundland.csv', 'number-of-households-canada-provinces-NewFoundland_interpolated.csv')
-process_file('datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-NoviaScotia.csv', 'number-of-households-canada-provinces-NoviaScotia_interpolated.csv')
-process_file('datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-PEI.csv', 'number-of-households-canada-provinces-PEI_interpolated.csv')
-process_file('datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-Saskachewan.csv', 'number-of-households-canada-provinces-Saskachewan_interpolated.csv')
+process_file('number-of-households-canada-provinces-Alberta.csv', 'number-of-households-canada-provinces-Alberta_interpolated.csv')
+process_file('number-of-households-canada-provinces-Manitoba.csv', 'number-of-households-canada-provinces-Manitoba_interpolated.csv')
+process_file('number-of-households-canada-provinces-NewBrunswick.csv', 'number-of-households-canada-provinces-NewBrunswick_interpolated.csv')
+process_file('number-of-households-canada-provinces-NewFoundland.csv', 'number-of-households-canada-provinces-NewFoundland_interpolated.csv')
+process_file('number-of-households-canada-provinces-NoviaScotia.csv', 'number-of-households-canada-provinces-NoviaScotia_interpolated.csv')
+process_file('number-of-households-canada-provinces-PEI.csv', 'number-of-households-canada-provinces-PEI_interpolated.csv')
+process_file('number-of-households-canada-provinces-Saskachewan.csv', 'number-of-households-canada-provinces-Saskachewan_interpolated.csv')
