@@ -39,17 +39,18 @@ def process_file(input_file):
 
 # File paths
 file_paths = [
-    r"datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-Alberta.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-BC.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-Manitoba.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-NewBrunswick.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-NewFoundland.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-NoviaScotia.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-Ontario.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-PEI.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-quebec.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\number-of-households-canada-provinces-Saskachewan.csv"
+    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-Alberta.csv",
+    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-BC.csv",
+    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-Manitoba.csv",
+    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-NewBrunswick.csv",
+    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-NewFoundland.csv",
+    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-NoviaScotia.csv",
+    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-Ontario.csv",
+    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-PEI.csv",
+    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-quebec.csv",
+    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-Saskachewan.csv"
 ]
+
 # Process each file
 processed_data = {}
 for file in file_paths:
@@ -57,12 +58,13 @@ for file in file_paths:
     processed_data[province_name] = process_file(file).rename(columns={"Number_of_Households": province_name})
 
 # Merge all datasets
-merged_df = pd.DataFrame()
+merged_df = list(processed_data.values())[0]
 for province, df in processed_data.items():
-    if merged_df.empty:
-        merged_df = df
-    else:
-        merged_df = merged_df.merge(df[['Year', province]], on="Year", how="outer")
+    if province != list(processed_data.keys())[0]:
+        merged_df = merged_df.merge(df, on="Year", how="outer")
+
+# Adding Canada data
+merged_df["Canada"] = merged_df.iloc[:, 1:].sum(axis=1)
 
 # Generate a date range with months for each year
 date_range = pd.date_range(start=f"{merged_df['Year'].min()}-01", end=f"{merged_df['Year'].max()}-12", freq='M')
@@ -89,15 +91,13 @@ province_mapping = {
     "Ontario": "Ontario",
     "PEI": "Prince Edward Island",
     "quebec": "Quebec",
-    "Saskachewan": "Saskatchewan"
+    "Saskachewan": "Saskatchewan",
+    "Canada": "Canada"
 }
 
 time_series_data["Province"] = time_series_data["Province"].map(province_mapping)
-
-# Reordering columns
-time_series_data = time_series_data[["REF_DATE", "Province", "Number_of_Households"]]
-
 # Save the final dataset
-time_series_data.to_csv("datasets\Housing Dataset\Housing_Numbers\Number_of_household.csv", index=False)
+output_path = r"datasets\Housing Dataset\Merge_of_all_Features\Number_of_Household.csv"
+time_series_data.to_csv(output_path, index=False)
 
-print("Processing complete. Standardized dataset saved as 'standardized_time_series_household_data.csv'.")
+print(f"Processing complete. Standardized dataset saved as '{output_path}'.")
