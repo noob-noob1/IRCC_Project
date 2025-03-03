@@ -69,12 +69,12 @@ merged_df["Canada"] = merged_df.iloc[:, 1:].sum(axis=1)
 # Generate a date range with months for each year
 date_range = pd.date_range(start=f"{merged_df['Year'].min()}-01", end=f"{merged_df['Year'].max()}-12", freq='M')
 
-# Creating a new DataFrame with 'REF_DATE' and 'Province' columns
-time_series_data = pd.DataFrame(list(product(date_range, merged_df.columns[1:])), columns=["REF_DATE", "Province"])
+# Creating a new DataFrame with 'REF_DATE' and 'GEO' columns
+time_series_data = pd.DataFrame(list(product(date_range, merged_df.columns[1:])), columns=["REF_DATE", "GEO"])
 
 # Mapping values from merged dataset to new format
 time_series_data["Number_of_Households"] = time_series_data.apply(
-    lambda row: merged_df.loc[merged_df["Year"] == row["REF_DATE"].year, row["Province"]].values[0], axis=1
+    lambda row: merged_df.loc[merged_df["Year"] == row["REF_DATE"].year, row["GEO"]].values[0], axis=1
 )
 
 # Convert REF_DATE to YYYY-MM-DD format
@@ -87,15 +87,16 @@ province_mapping = {
     "Manitoba": "Manitoba",
     "NewBrunswick": "New Brunswick",
     "NewFoundland": "Newfoundland and Labrador",
-    "NoviaScotia": "Nova Scotia",
+    "NovaScotia": "Nova Scotia",
     "Ontario": "Ontario",
     "PEI": "Prince Edward Island",
     "quebec": "Quebec",
-    "Saskachewan": "Saskatchewan",
+    "Saskatchewan": "Saskatchewan",
     "Canada": "Canada"
 }
 
-time_series_data["Province"] = time_series_data["Province"].map(province_mapping)
+time_series_data["GEO"] = time_series_data["GEO"].map(province_mapping)
+
 # Save the final dataset
 output_path = r"datasets\Housing Dataset\Merge_of_all_Features\Number_of_Household.csv"
 time_series_data.to_csv(output_path, index=False)
