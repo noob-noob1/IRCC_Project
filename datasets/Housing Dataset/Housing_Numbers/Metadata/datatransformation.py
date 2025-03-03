@@ -39,16 +39,16 @@ def process_file(input_file):
 
 # File paths
 file_paths = [
-    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-Alberta.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-BC.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-Manitoba.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-NewBrunswick.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-NewFoundland.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-NoviaScotia.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-Ontario.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-PEI.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-quebec.csv",
-    r"datasets\Housing Dataset\Housing_Numbers\Metadata\number-of-households-canada-provinces-Saskachewan.csv"
+    r"datasets/Housing Dataset/Housing_Numbers/Metadata/number-of-households-canada-provinces-Alberta.csv",
+    r"datasets/Housing Dataset/Housing_Numbers/Metadata/number-of-households-canada-provinces-BC.csv",
+    r"datasets/Housing Dataset/Housing_Numbers/Metadata/number-of-households-canada-provinces-Manitoba.csv",
+    r"datasets/Housing Dataset/Housing_Numbers/Metadata/number-of-households-canada-provinces-NewBrunswick.csv",
+    r"datasets/Housing Dataset/Housing_Numbers/Metadata/number-of-households-canada-provinces-NewFoundland.csv",
+    r"datasets/Housing Dataset/Housing_Numbers/Metadata/number-of-households-canada-provinces-NoviaScotia.csv",
+    r"datasets/Housing Dataset/Housing_Numbers/Metadata/number-of-households-canada-provinces-Ontario.csv",
+    r"datasets/Housing Dataset/Housing_Numbers/Metadata/number-of-households-canada-provinces-PEI.csv",
+    r"datasets/Housing Dataset/Housing_Numbers/Metadata/number-of-households-canada-provinces-quebec.csv",
+    r"datasets/Housing Dataset/Housing_Numbers/Metadata/number-of-households-canada-provinces-Saskachewan.csv"
 ]
 
 # Process each file
@@ -66,19 +66,22 @@ for province, df in processed_data.items():
 # Adding Canada data
 merged_df["Canada"] = merged_df.iloc[:, 1:].sum(axis=1)
 
-# Generate a date range with months for each year
-date_range = pd.date_range(start=f"{merged_df['Year'].min()}-01", end=f"{merged_df['Year'].max()}-12", freq='M')
+# Load the uploaded dataset to align the date range
+uploaded_data = pd.read_csv(r"datasets/Housing Dataset/Merge_of_all_Features/Number_of_Household.csv", parse_dates=["REF_DATE"])
+min_date = uploaded_data["REF_DATE"].min()
+max_date = uploaded_data["REF_DATE"].max()
+common_date_range = pd.date_range(start=min_date, end=max_date, freq='MS')  # Start of the month
 
 # Creating a new DataFrame with 'REF_DATE' and 'GEO' columns
-time_series_data = pd.DataFrame(list(product(date_range, merged_df.columns[1:])), columns=["REF_DATE", "GEO"])
+time_series_data = pd.DataFrame(list(product(common_date_range, merged_df.columns[1:])), columns=["REF_DATE", "GEO"])
 
 # Mapping values from merged dataset to new format
 time_series_data["Number_of_Households"] = time_series_data.apply(
     lambda row: merged_df.loc[merged_df["Year"] == row["REF_DATE"].year, row["GEO"]].values[0], axis=1
 )
 
-# Convert REF_DATE to YYYY-MM-DD format
-time_series_data["REF_DATE"] = time_series_data["REF_DATE"].dt.strftime("%Y-%m-%d")
+# Convert REF_DATE to YYYY-MM-01 format
+time_series_data["REF_DATE"] = time_series_data["REF_DATE"].dt.strftime("%Y-%m-01")
 
 # Standardizing province names
 province_mapping = {
@@ -98,7 +101,7 @@ province_mapping = {
 time_series_data["GEO"] = time_series_data["GEO"].map(province_mapping)
 
 # Save the final dataset
-output_path = r"datasets\Housing Dataset\Merge_of_all_Features\Number_of_Household.csv"
+output_path = r"datasets/Housing Dataset/Merge_of_all_Features/Number_of_Household.csv"
 time_series_data.to_csv(output_path, index=False)
 
 print(f"Processing complete. Standardized dataset saved as '{output_path}'.")
