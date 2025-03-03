@@ -1,0 +1,36 @@
+Net Migration
+
+Formula: Total PRs + Total TRs
+Represents the sum of Permanent Residents (PRs) and Temporary Residents (TRs). If either PRs or TRs is 0, the value is set to 0.
+Natural Increase
+
+Formula: Total Births - Total Deaths
+Measures the population growth due to births exceeding deaths. If either births or deaths is 0, the value is set to 0.
+Net Population Change
+
+Formula: Net Migration + Natural Increase
+Represents the total change in population from both migration and natural increase. If either Net Migration or Natural Increase is 0, this value is also set to 0.
+Net Migration Rate
+
+Formula: (Net Migration / Population Estimate) * 100
+Expressed as a percentage, it represents the proportion of population change due to migration.
+Natural Growth Rate
+
+Formula: (Natural Increase / Population Estimate) * 100
+Expressed as a percentage, it represents the proportion of population change due to natural increase (births minus deaths).
+Population Growth Rate (%)
+
+Formula: (Net Population Change / Population Estimate) * 100
+Measures the overall population growth rate as a percentage.
+Net Migration %
+
+Formula: (Net Migration / (Net Migration + Natural Increase)) * 100
+Shows the contribution of migration to total population growth.
+Natural Increase %
+
+Formula: (Natural Increase / (Net Migration + Natural Increase)) * 100
+Shows the contribution of natural increase (births minus deaths) to total population growth.
+Net Population Change %
+
+Formula: (Net Population Change / (Net Migration + Natural Increase)) * 100
+Represents the overall population change as a percentage of total migration and natural increase.
