@@ -1,1 +1,3 @@
 1. Eleven census metropolitan area composite in building construction price index is assumed to be equal to Canada-wide
+2. Population data sets included (Unknown province or territory, Unknown province or territory of residence, Province / Territory not stated
+,Province/territory not stated) that were removed
