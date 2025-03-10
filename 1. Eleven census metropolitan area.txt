@@ -1,3 +1,5 @@
 1. Eleven census metropolitan area composite in building construction price index is assumed to be equal to Canada-wide
 2. Population data sets included (Unknown province or territory, Unknown province or territory of residence, Province / Territory not stated
 ,Province/territory not stated) that were removed
+3. Our Housing Starts dataset contained data recorded every three months, while the other dataset had monthly data. To align them, we interpolated the Housing Starts data to a monthly frequency by distributing each quarterly value equally across the three months within the respective quarter. This approach was applied consistently across the entire date range to maintain accuracy.
+4. After summing up the interpolated monthly values and incorporating the "Number of Households" column, we calculated the projected total for the following year. In most cases, this projected value was slightly higher than the actual reported value. Given this pattern, we assumed this calculated value as the basis for our project.
