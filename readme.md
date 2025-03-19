@@ -84,8 +84,8 @@ pip install -r requirements.txt
 - Nithish H Prabagaran
 - Yad Hossein
 
-## 📞 Contact Information
+## Contact Information
 - **Yad Hossein**: <"email">
-- 
+
 ## 🙏 Acknowledgements
 Special thanks to IRCC representatives and stakeholders for providing data access and continuous feedback throughout the project.
