@@ -1,0 +1,232 @@
+REF_DATE,GEO,College,Elementary and/or High School,University
+1995,Alberta,11.0,7.0,15.0
+1995,British Columbia,15.0,5.0,16.0
+1995,Canada,15.0,9.0,19.0
+1995,Manitoba,5.0,7.0,20.0
+1995,New Brunswick,8.0,6.0,19.0
+1995,Newfoundland and Labrador,13.0,5.0,21.0
+1995,Nova Scotia,7.0,10.0,22.0
+1995,Ontario,15.0,13.0,21.0
+1995,Prince Edward Island,7.0,6.0,22.0
+1995,Quebec,22.0,5.0,17.0
+1995,Saskatchewan,5.0,7.0,22.0
+2000,Alberta,14.0,6.0,14.0
+2000,British Columbia,17.0,6.0,16.0
+2000,Canada,15.0,9.0,19.0
+2000,Manitoba,7.0,6.0,23.0
+2000,New Brunswick,10.0,6.0,19.0
+2000,Newfoundland and Labrador,13.0,6.0,25.0
+2000,Nova Scotia,9.0,8.0,25.0
+2000,Ontario,15.0,13.0,20.0
+2000,Prince Edward Island,12.0,6.0,23.0
+2000,Quebec,20.0,6.0,18.0
+2000,Saskatchewan,7.0,7.0,24.0
+2005,Alberta,13.0,4.0,17.0
+2005,British Columbia,17.0,6.0,21.0
+2005,Canada,14.0,7.0,24.0
+2005,Manitoba,8.0,6.0,28.0
+2005,New Brunswick,8.0,6.0,27.0
+2005,Newfoundland and Labrador,11.0,5.0,28.0
+2005,Nova Scotia,7.0,7.0,30.0
+2005,Ontario,14.0,9.0,28.0
+2005,Prince Edward Island,8.0,6.0,27.0
+2005,Quebec,18.0,6.0,21.0
+2005,Saskatchewan,6.0,6.0,26.0
+2006,Alberta,12.0,5.0,17.0
+2006,British Columbia,13.0,5.0,21.0
+2006,Canada,14.0,6.0,24.0
+2006,Manitoba,7.0,7.0,24.0
+2006,New Brunswick,10.0,6.0,27.0
+2006,Newfoundland and Labrador,12.0,6.0,28.0
+2006,Nova Scotia,9.0,6.0,28.0
+2006,Ontario,14.0,8.0,28.0
+2006,Prince Edward Island,9.0,5.0,27.0
+2006,Quebec,19.0,6.0,20.0
+2006,Saskatchewan,5.0,6.0,23.0
+2007,Alberta,11.0,5.0,16.0
+2007,British Columbia,15.0,5.0,22.0
+2007,Canada,14.0,7.0,24.0
+2007,Manitoba,7.0,7.0,25.0
+2007,New Brunswick,9.0,6.0,26.0
+2007,Newfoundland and Labrador,12.0,4.0,30.0
+2007,Nova Scotia,10.0,6.0,26.0
+2007,Ontario,14.0,8.0,29.0
+2007,Prince Edward Island,10.0,4.0,28.0
+2007,Quebec,20.0,6.0,20.0
+2007,Saskatchewan,7.0,6.0,21.0
+2008,Alberta,13.0,5.0,14.0
+2008,British Columbia,13.0,5.0,23.0
+2008,Canada,14.0,7.0,23.0
+2008,Manitoba,6.0,6.0,26.0
+2008,New Brunswick,9.0,7.0,23.0
+2008,Newfoundland and Labrador,12.0,5.0,27.0
+2008,Nova Scotia,8.0,7.0,25.0
+2008,Ontario,14.0,8.0,26.0
+2008,Prince Edward Island,8.0,7.0,26.0
+2008,Quebec,21.0,7.0,20.0
+2008,Saskatchewan,6.0,7.0,21.0
+2009,Alberta,10.0,6.0,19.0
+2009,British Columbia,13.0,5.0,25.0
+2009,Canada,15.0,7.0,24.0
+2009,Manitoba,7.0,6.0,25.0
+2009,New Brunswick,10.0,6.0,24.0
+2009,Newfoundland and Labrador,16.0,4.0,24.0
+2009,Nova Scotia,11.0,7.0,25.0
+2009,Ontario,14.0,8.0,29.0
+2009,Prince Edward Island,10.0,6.0,28.0
+2009,Quebec,22.0,6.0,20.0
+2009,Saskatchewan,7.0,7.0,21.0
+2010,Alberta,8.0,6.0,23.0
+2010,British Columbia,11.0,6.0,27.0
+2010,Canada,14.0,7.0,26.0
+2010,Manitoba,7.0,6.0,25.0
+2010,New Brunswick,9.0,6.0,25.0
+2010,Newfoundland and Labrador,15.0,5.0,22.0
+2010,Nova Scotia,10.0,7.0,25.0
+2010,Ontario,16.0,8.0,29.0
+2010,Prince Edward Island,10.0,5.0,28.0
+2010,Quebec,21.0,6.0,21.0
+2010,Saskatchewan,7.0,7.0,23.0
+2011,Alberta,8.0,6.0,21.0
+2011,British Columbia,14.0,5.0,27.0
+2011,Canada,15.0,6.0,26.0
+2011,Manitoba,7.0,7.0,25.0
+2011,New Brunswick,7.0,5.0,27.0
+2011,Newfoundland and Labrador,12.0,4.0,27.0
+2011,Nova Scotia,10.0,6.0,29.0
+2011,Ontario,15.0,8.0,28.0
+2011,Prince Edward Island,12.0,5.0,26.0
+2011,Quebec,22.0,6.0,23.0
+2011,Saskatchewan,6.0,6.0,22.0
+2012,Alberta,9.0,6.0,22.0
+2012,British Columbia,14.0,6.0,27.0
+2012,Canada,16.0,6.0,26.0
+2012,Manitoba,7.0,6.0,26.0
+2012,New Brunswick,11.0,5.0,27.0
+2012,Newfoundland and Labrador,11.0,4.0,28.0
+2012,Nova Scotia,11.0,6.0,25.0
+2012,Ontario,16.0,7.0,30.0
+2012,Prince Edward Island,14.0,4.0,28.0
+2012,Quebec,23.0,6.0,21.0
+2012,Saskatchewan,7.0,6.0,23.0
+2013,Alberta,9.0,6.0,24.0
+2013,British Columbia,13.0,5.0,28.0
+2013,Canada,16.0,6.0,26.0
+2013,Manitoba,8.0,6.0,24.0
+2013,New Brunswick,10.0,5.0,24.0
+2013,Newfoundland and Labrador,14.0,4.0,25.0
+2013,Nova Scotia,9.0,6.0,28.0
+2013,Ontario,17.0,7.0,27.0
+2013,Prince Edward Island,13.0,5.0,28.0
+2013,Quebec,22.0,6.0,22.0
+2013,Saskatchewan,6.0,6.0,25.0
+2014,Alberta,8.0,6.0,22.0
+2014,British Columbia,12.0,4.0,28.0
+2014,Canada,15.0,6.0,27.0
+2014,Manitoba,6.0,5.0,26.0
+2014,New Brunswick,9.0,6.0,24.0
+2014,Newfoundland and Labrador,12.0,6.0,27.0
+2014,Nova Scotia,11.0,7.0,24.0
+2014,Ontario,16.0,6.0,30.0
+2014,Prince Edward Island,11.0,5.0,30.0
+2014,Quebec,23.0,6.0,24.0
+2014,Saskatchewan,7.0,6.0,24.0
+2015,Alberta,9.0,6.0,22.0
+2015,British Columbia,12.0,5.0,27.0
+2015,Canada,15.0,6.0,27.0
+2015,Manitoba,8.0,6.0,26.0
+2015,New Brunswick,10.0,5.0,27.0
+2015,Newfoundland and Labrador,13.0,3.0,27.0
+2015,Nova Scotia,10.0,5.0,27.0
+2015,Ontario,16.0,6.0,30.0
+2015,Prince Edward Island,9.0,5.0,26.0
+2015,Quebec,21.0,6.0,24.0
+2015,Saskatchewan,7.0,6.0,23.0
+2016,Alberta,8.0,6.0,25.0
+2016,British Columbia,12.0,4.0,29.0
+2016,Canada,15.0,6.0,28.0
+2016,Manitoba,6.0,5.0,28.0
+2016,New Brunswick,11.0,4.0,25.0
+2016,Newfoundland and Labrador,13.0,5.0,26.0
+2016,Nova Scotia,9.0,6.0,31.0
+2016,Ontario,15.0,7.0,31.0
+2016,Prince Edward Island,11.0,5.0,29.0
+2016,Quebec,23.0,5.0,26.0
+2016,Saskatchewan,6.0,7.0,24.0
+2017,Alberta,7.0,6.0,26.0
+2017,British Columbia,12.0,4.0,28.0
+2017,Canada,14.0,5.0,29.0
+2017,Manitoba,6.0,6.0,29.0
+2017,New Brunswick,10.0,5.0,24.0
+2017,Newfoundland and Labrador,14.0,5.0,28.0
+2017,Nova Scotia,12.0,6.0,28.0
+2017,Ontario,14.0,5.0,31.0
+2017,Prince Edward Island,10.0,4.0,31.0
+2017,Quebec,22.0,5.0,27.0
+2017,Saskatchewan,6.0,7.0,26.0
+2018,Alberta,9.0,6.0,24.0
+2018,British Columbia,13.0,4.0,30.0
+2018,Canada,15.0,5.0,29.0
+2018,Manitoba,8.0,5.0,28.0
+2018,New Brunswick,8.0,4.0,26.0
+2018,Newfoundland and Labrador,13.0,4.0,34.0
+2018,Nova Scotia,11.0,6.0,28.0
+2018,Ontario,14.0,6.0,32.0
+2018,Prince Edward Island,9.0,5.0,28.0
+2018,Quebec,23.0,4.0,26.0
+2018,Saskatchewan,6.0,6.0,31.0
+2019,Alberta,8.0,5.0,28.0
+2019,British Columbia,11.0,3.0,31.0
+2019,Canada,14.0,5.0,30.0
+2019,Manitoba,7.0,5.0,28.0
+2019,New Brunswick,11.0,4.0,23.0
+2019,Newfoundland and Labrador,10.0,3.0,29.0
+2019,Nova Scotia,9.0,7.0,27.0
+2019,Ontario,13.0,5.0,32.0
+2019,Prince Edward Island,10.0,5.0,26.0
+2019,Quebec,22.0,5.0,26.0
+2019,Saskatchewan,6.0,6.0,26.0
+2020,Alberta,8.0,5.0,30.0
+2020,British Columbia,10.0,5.0,32.0
+2020,Canada,13.0,4.0,32.0
+2020,Manitoba,7.0,3.0,33.0
+2020,New Brunswick,8.0,3.0,26.0
+2020,Newfoundland and Labrador,10.0,4.0,32.0
+2020,Nova Scotia,10.0,4.0,29.0
+2020,Ontario,12.0,4.0,35.0
+2020,Prince Edward Island,11.0,5.0,30.0
+2020,Quebec,25.0,5.0,27.0
+2020,Saskatchewan,5.0,6.0,31.0
+2021,Alberta,8.0,5.0,34.0
+2021,British Columbia,9.0,4.0,35.0
+2021,Canada,13.0,4.0,33.0
+2021,Manitoba,7.0,5.0,31.0
+2021,New Brunswick,10.0,3.0,25.0
+2021,Newfoundland and Labrador,13.0,4.0,33.0
+2021,Nova Scotia,12.0,4.0,29.0
+2021,Ontario,12.0,4.0,36.0
+2021,Prince Edward Island,9.0,7.0,29.0
+2021,Quebec,24.0,5.0,27.0
+2021,Saskatchewan,4.0,7.0,30.0
+2022,Alberta,9.0,6.0,27.0
+2022,British Columbia,9.0,4.0,32.0
+2022,Canada,13.0,5.0,30.0
+2022,Manitoba,6.0,4.0,27.0
+2022,New Brunswick,10.0,4.0,23.0
+2022,Newfoundland and Labrador,11.0,6.0,33.0
+2022,Nova Scotia,8.0,3.0,31.0
+2022,Ontario,13.0,5.0,33.0
+2022,Prince Edward Island,10.0,5.0,32.0
+2022,Quebec,25.0,4.0,26.0
+2022,Saskatchewan,6.0,6.0,31.0
+2023,Alberta,9.0,6.0,28.0
+2023,British Columbia,10.0,4.0,33.0
+2023,Canada,14.0,5.0,31.0
+2023,Manitoba,7.0,5.0,32.0
+2023,New Brunswick,12.0,5.0,24.0
+2023,Newfoundland and Labrador,13.0,4.0,30.0
+2023,Nova Scotia,9.0,4.0,28.0
+2023,Ontario,13.0,5.0,36.0
+2023,Prince Edward Island,10.0,4.0,30.0
+2023,Quebec,23.0,4.0,24.0
+2023,Saskatchewan,6.0,7.0,30.0
