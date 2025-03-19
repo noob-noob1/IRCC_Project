@@ -62,8 +62,6 @@ We plan to apply multiple forecasting techniques, including:
 Baseline models will be established, and performance comparisons will be conducted to select the most reliable forecasting method.
 
 ## 🚀 How to Run the Project
-Detailed instructions to run the forecasting visualization tool will be provided once the final deliverable is decided.
-
 In general, the setup will involve:
 ```bash
 # Clone repository
