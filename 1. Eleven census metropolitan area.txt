@@ -3,3 +3,10 @@
 ,Province/territory not stated) that were removed
 3. Our Housing Starts dataset contained data recorded every three months, while the other dataset had monthly data. To align them, we interpolated the Housing Starts data to a monthly frequency by distributing each quarterly value equally across the three months within the respective quarter. This approach was applied consistently across the entire date range to maintain accuracy.
 4. After summing up the interpolated monthly values and incorporating the "Number of Households" column, we calculated the projected total for the following year. In most cases, this projected value was slightly higher than the actual reported value. Given this pattern, we assumed this calculated value as the basis for our project.
+5. Hex Code used for coloring:
+3C7C74
+C3C3A5
+6F0C0C
+E75E19
+DEAE5C
+6. Took medium estimates for housing Predictions
