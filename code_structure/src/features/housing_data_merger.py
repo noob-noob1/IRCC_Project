@@ -95,10 +95,10 @@ def merge_all_housing_features(household_path, housing_started_path, nhpi_path, 
 if __name__ == '__main__':
     # Example usage: Define paths relative to the project root if run directly
     # This assumes the script is run from the project root directory (e.g., 'c:/ircc project')
-    processed_dir = 'data/processed'
+    processed_dir = 'data/processed/housing'  # Updated to include housing subdirectory
     household_file = os.path.join(processed_dir, 'Household_Numbers_Processed.csv')
     housing_started_file = os.path.join(processed_dir, 'HousingStarted_Processed.csv')
     nhpi_file = os.path.join(processed_dir, 'NHPI_Processed.csv')
-    output_file = os.path.join(processed_dir, 'Housing_Features_Merged.csv')
+    output_file = os.path.join('data/processed', 'Housing_Features_Merged.csv')
 
     merge_all_housing_features(household_file, housing_started_file, nhpi_file, output_file)

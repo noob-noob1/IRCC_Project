@@ -64,7 +64,7 @@ if __name__ == '__main__':
     # Example usage: Adjust paths as necessary if run directly
     # Assumes the script is run from within the src/data_processing directory
     raw_file = '../../data/raw/NHPI.csv'
-    processed_file = '../../data/processed/NHPI_Processed.csv'
+    processed_file = '../../data/processed/housing/NHPI_Processed.csv'  # Updated path
     try:
         process_nhpi_data(raw_file, processed_file)
     except FileNotFoundError as e:

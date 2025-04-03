@@ -120,5 +120,5 @@ def process_housing_started_data(input_path, output_path):
 if __name__ == '__main__':
     # Example usage:
     raw_path = '../../data/raw/HousingStarted_Raw.csv'  # Adjust relative path if needed
-    processed_path = '../../data/processed/HousingStarted_Processed.csv' # Adjust relative path
+    processed_path = '../../data/processed/housing/HousingStarted_Processed.csv'  # Updated path
     process_housing_started_data(raw_path, processed_path)

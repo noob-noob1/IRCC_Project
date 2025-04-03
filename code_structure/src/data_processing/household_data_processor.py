@@ -41,7 +41,7 @@ def process_file(input_file):
 
     return df
 
-def process_household_data(raw_data_dir, processed_output_path, reference_data_path):
+def process_household_data(raw_data_dir, processed_output_path):
     """
     Processes raw household data files, merges them, aligns dates,
     standardizes names, and saves the final dataset.
@@ -87,7 +87,7 @@ def process_household_data(raw_data_dir, processed_output_path, reference_data_p
     numeric_cols = merged_df.select_dtypes(include='number').columns.difference(['Year'])
     merged_df["Canada"] = merged_df[numeric_cols].sum(axis=1)
 
-
+    """
     # Load the reference dataset to align the date range
     try:
         reference_df = pd.read_csv(reference_data_path, parse_dates=["REF_DATE"])
@@ -100,6 +100,18 @@ def process_household_data(raw_data_dir, processed_output_path, reference_data_p
     except Exception as e:
         print(f"Error reading or processing reference data file {reference_data_path}: {e}")
         return
+    """
+    try:
+        min_year = merged_df['Year'].min()
+        # Use the known max year from interpolation or calculate from data
+        max_year = 2036 # Or merged_df['Year'].max() if you don't want the fixed interpolation end
+        start_date = pd.Timestamp(f'{min_year}-01-01')
+        end_date = pd.Timestamp(f'{max_year}-12-01') # Last month start of the max year
+        common_date_range = pd.date_range(start=start_date, end=end_date, freq='MS')
+    except Exception as e:
+        print(f"Error creating date range from processed data: {e}")
+        return # Or handle error appropriately
+    
 
     # Creating a new DataFrame with 'REF_DATE' and 'GEO' columns
     time_series_data = pd.DataFrame(list(product(common_date_range, merged_df.columns.difference(['Year']))), columns=["REF_DATE", "GEO"])
@@ -157,7 +169,6 @@ if __name__ == '__main__':
     # Example usage when running the script directly
     # Define paths relative to the project root (c:/ircc project)
     RAW_DIR = 'data/raw/household_numbers'
-    PROCESSED_PATH = 'data/processed/Household_Numbers_Processed.csv'
-    REFERENCE_PATH = 'old_structure/datasets/Housing Dataset/Merge_of_all_Features/Number_of_Household.csv' # Using the path from old structure
+    PROCESSED_PATH = 'data/processed/housing/Household_Numbers_Processed.csv'  # Updated path
 
-    process_household_data(RAW_DIR, PROCESSED_PATH, REFERENCE_PATH)
+    process_household_data(RAW_DIR, PROCESSED_PATH)
