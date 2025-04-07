@@ -4,7 +4,8 @@
 **Future Canada** is an intelligent forecasting tool designed to help policymakers, analysts, and researchers assess **Canada’s future population absorption capacity**. Powered by predictive models and interactive dashboards, the project simulates future scenarios to highlight potential pressures on **Housing**, **Education**, and **Healthcare** infrastructure across provinces.
 
 **In collaboration with:**
-![IRCC Logo](https://github.com/user-attachments/assets/8072079b-170b-48d0-8976-9f9d06d2397d)
+![IRCC Logo](https://github.com/user-attachments/assets/1a8282ba-02e8-4d45-995b-87755eadc4c6)
+
 
 ---
 
