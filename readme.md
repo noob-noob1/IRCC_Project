@@ -1,7 +1,10 @@
 
-# Future Canada: Forecasting Canada's Growth & Infrastructure Capacity
+# 🍁FutureCanada: Forecasting Canada's Growth & Infrastructure Capacity
 
 **Future Canada** is an intelligent forecasting tool designed to help policymakers, analysts, and researchers assess **Canada’s future population absorption capacity**. Powered by predictive models and interactive dashboards, the project simulates future scenarios to highlight potential pressures on **Housing**, **Education**, and **Healthcare** infrastructure across provinces.
+
+**In collaboration with:**
+![IRCC Logo](https://github.com/user-attachments/assets/8072079b-170b-48d0-8976-9f9d06d2397d)
 
 ---
 
