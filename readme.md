@@ -42,10 +42,10 @@ pip install pandas numpy matplotlib seaborn scikit-learn
    python main.py
    ```
 
-4. **Open Power BI report** from the `/dashboard` directory:
+4. **Open Power BI report** from the `/dashboard` directory and load the generated forecast data:
    - File: `FutureCanadaDashboard.pbix`
 
-5. **Adjust TR and PR** in Power BI to see how infrastructure demand changes across provinces.
+5. **Adjust TR and PR** in Power BI to see how infrastructure and education demand changes across provinces.
 
 ---
 
@@ -78,7 +78,6 @@ future-canada/
 
 Use the sliders for TR (Temporary Residents) and PR (Permenant Residents) to interactively model impacts on infrastructure.
 
-![Power BI Dashboard](./assets/dashboard_preview.png)
 ![image](https://github.com/user-attachments/assets/4d1d10d9-1a2b-4de1-b3dd-14dec2d75907)
 
 
