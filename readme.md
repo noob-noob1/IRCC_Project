@@ -20,7 +20,7 @@
 Ensure you have the following Python packages installed:
 
 ```
-pip install pandas numpy matplotlib seaborn openpyxl scikit-learn
+pip install pandas numpy matplotlib seaborn scikit-learn
 ```
 
 ---
@@ -79,6 +79,7 @@ future-canada/
 Use the sliders for TR (Temporary Residents) and PR (Permenant Residents) to interactively model impacts on infrastructure.
 
 ![Power BI Dashboard](./assets/dashboard_preview.png)
+![image](https://github.com/user-attachments/assets/4d1d10d9-1a2b-4de1-b3dd-14dec2d75907)
 
 
 ---
