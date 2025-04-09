@@ -80,7 +80,7 @@ future-canada/
 
 ## 📊 Power BI Dashboard Preview
 
-Use the sliders for TR (Temporary Residents) and PR (Permenant Residents) to interactively model impacts on infrastructure.
+Use the sliders for TR (Temporary Residents) and PR (Permenant Residents) to interactively model impacts on housing and education.
 
 ![IRCC_Proj_GIF](https://github.com/user-attachments/assets/0d390191-202d-4388-8ad4-f9549c2fb3c6)
 
