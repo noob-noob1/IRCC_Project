@@ -84,6 +84,7 @@ future-canada/
 Use the sliders for TR (Temporary Residents) and PR (Permenant Residents) to interactively model impacts on infrastructure.
 
 ![image](https://github.com/user-attachments/assets/4d1d10d9-1a2b-4de1-b3dd-14dec2d75907)
+![video](https://www.loom.com/share/39b336bde3f54e4b8aef99836f06c2e6?sid=bd93d4d9-87cb-4ab5-98c5-f9caa7393996)
 
 
 ---
