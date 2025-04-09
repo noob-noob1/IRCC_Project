@@ -5,9 +5,7 @@
 
 **In collaboration with:**
 
-![image](https://github.com/user-attachments/assets/f118b764-bbd9-4d95-8686-bbf7e1d75a0a)
-
-
+![image](https://github.com/user-attachments/assets/ae0bf1c0-a04f-4f2a-8169-6356e2af0983)
 
 ---
 
