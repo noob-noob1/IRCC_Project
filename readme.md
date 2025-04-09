@@ -4,7 +4,9 @@
 **Future Canada** is an intelligent forecasting tool designed to help policymakers, analysts, and researchers assess **Canada’s future population absorption capacity**. Powered by predictive models and interactive dashboards, the project simulates future scenarios to highlight potential pressures on **Housing**, **Education**, and **Healthcare** infrastructure across provinces.
 
 **In collaboration with:**
-![IRCC_Proj_GIF](https://github.com/user-attachments/assets/26c43385-9651-499a-89fa-f34e5c3359c0)
+
+![image](https://github.com/user-attachments/assets/f118b764-bbd9-4d95-8686-bbf7e1d75a0a)
+
 
 
 ---
@@ -82,9 +84,7 @@ future-canada/
 
 Use the sliders for TR (Temporary Residents) and PR (Permenant Residents) to interactively model impacts on infrastructure.
 
-![image](https://github.com/user-attachments/assets/4d1d10d9-1a2b-4de1-b3dd-14dec2d75907)
-![loom-video-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/15804d41-8969-4e56-b260-c8e6f399724e)
-
+![IRCC_Proj_GIF](https://github.com/user-attachments/assets/0d390191-202d-4388-8ad4-f9549c2fb3c6)
 
 ---
 
