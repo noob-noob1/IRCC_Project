@@ -3,7 +3,7 @@ import os
 import logging
 
 # Setup logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_processed_data(household_path, housing_started_path, nhpi_path):
     """Loads the three processed housing datasets."""

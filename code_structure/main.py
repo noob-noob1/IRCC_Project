@@ -1,339 +1,565 @@
+# main.py
+import logging
 import os
-import pandas as pd
-from src.data_processing.population_data_corrector import correct_population_dataset
-from src.features.population_metrics_calculator import calculate_population_metrics
-from src.data_demographics.data_preparation import prepare_demographics_data
+import pandas as pd  # Added for type hinting and potential future use
+
+# Data Processing Imports
+from src.data_processing.educators_processor import process_educators_data
+from src.data_processing.epi_processor import process_epi_data
+from src.data_processing.expenditures_processor import process_expenditures_data
+from src.data_processing.graduation_rate_processor import process_graduation_rate_data
 from src.data_processing.household_data_processor import process_household_data
 from src.data_processing.housing_started_processor import process_housing_started_data
-from src.data_processing.nhpi_processor import process_nhpi_data
-from src.features.housing_data_merger import merge_all_housing_features
-from src.data_processing.educators_processor import process_educators_data # Added import for educators
-from src.data_processing.epi_processor import process_epi_data # Added import for EPI
-from src.data_processing.expenditures_processor import process_expenditures_data # Added import for Expenditures
-from src.data_processing.graduation_rate_processor import process_graduation_rate_data # Added import for Graduation Rate
-from src.data_processing.participation_rate_processor import process_participation_rate_data # Added import for Participation Rate
-from src.features.education_data_merger import merge_all_education_features # Added import for final education merge
-from src.features.education_feature_enhancer import enhance_education_data # Added import for education enhancement
 from src.data_processing.housing_type_merger import merge_housing_type_data
-from src.features.housing_feature_engineer import prepare_housing_data # Added import for housing feature engineering
-from src.machine_learning.housing_forecaster import run_housing_forecast # Added import for housing forecasting
-from src.machine_learning.education_forecaster import forecast_education_data # Added import for education forecasting
-import logging
+from src.data_processing.nhpi_processor import process_nhpi_data
+from src.data_processing.participation_rate_processor import process_participation_rate_data
+from src.data_processing.population_data_corrector import correct_population_dataset
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Data Demographics Imports
+from src.data_demographics.data_preparation import prepare_demographics_data
 
+# Features Imports
+from src.features.education_data_merger import merge_all_education_features
+from src.features.education_feature_enhancer import enhance_education_data
+from src.features.housing_data_merger import merge_all_housing_features
+from src.features.housing_feature_engineer import prepare_housing_data
+from src.features.population_metrics_calculator import calculate_population_metrics
+
+# Machine Learning Imports
+from src.machine_learning.education_forecaster import forecast_education_data
+from src.machine_learning.housing_forecaster import run_housing_forecast
+
+# --- Configuration ---
+
+# Basic logging setup
+logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# --- Directory and File Path Constants ---
+
+# Core directories
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RAW_DATA_DIR = os.path.join(BASE_DIR, 'data', 'raw')
 PROCESSED_DATA_DIR = os.path.join(BASE_DIR, 'data', 'processed')
-FORECASTED_DATA_DIR = os.path.join(BASE_DIR, 'data', 'forecasted') # Added forecast directory constant
-MODELS_DIR = os.path.join(BASE_DIR, 'models') # Added models directory constant
+FORECASTED_DATA_DIR = os.path.join(BASE_DIR, 'data', 'forecasted')
+MODELS_DIR = os.path.join(BASE_DIR, 'models')
 
+# Raw data file paths
 RAW_POPULATION_TIMESERIES_FILE = os.path.join(RAW_DATA_DIR, 'Population Timeseries.csv')
+print(RAW_POPULATION_TIMESERIES_FILE)
 CANADA_POPULATION_FILE = os.path.join(RAW_DATA_DIR, 'canada_population_data.csv')
 DEMOGRAPHICS_RAW_FILE = os.path.join(RAW_DATA_DIR, 'population_by_age_and_gender.csv')
 RAW_HOUSING_STARTED_FILE = os.path.join(RAW_DATA_DIR, 'HousingStarted_Raw.csv')
 RAW_NHPI_FILE = os.path.join(RAW_DATA_DIR, 'NHPI.csv')
 RAW_HOUSEHOLD_DIR = os.path.join(RAW_DATA_DIR, 'household_numbers')
-RAW_EDUCATORS_FILE = os.path.join(RAW_DATA_DIR, 'education_datasets', 'Educators in public elementary and secondary schools.csv') # Added path for raw educators data
-RAW_EPI_FILE = os.path.join(RAW_DATA_DIR, 'education_datasets', 'Education price index (EPI), elementary and secondary.csv') # Added path for raw EPI data
-RAW_EXPENDITURES_FILE = os.path.join(RAW_DATA_DIR, 'education_datasets', 'Elementary and secondary private schools, by type of expenditure.csv') # Added path for raw expenditures data
-RAW_GRADUATION_RATE_DIR = os.path.join(RAW_DATA_DIR, 'education_datasets', 'graduation_rates') # Added path for raw graduation rate data folder
-RAW_PARTICIPATION_RATE_DIR = os.path.join(RAW_DATA_DIR, 'education_datasets', 'participation_rates') # Added path for raw participation rate data folder
+RAW_HOUSING_TYPES_DIR = os.path.join(RAW_DATA_DIR, 'housing-types') # Added for clarity
+RAW_EDUCATORS_FILE = os.path.join(RAW_DATA_DIR, 'education_datasets', 'Educators in public elementary and secondary schools.csv')
+RAW_EPI_FILE = os.path.join(RAW_DATA_DIR, 'education_datasets', 'Education price index (EPI), elementary and secondary.csv')
+RAW_EXPENDITURES_FILE = os.path.join(RAW_DATA_DIR, 'education_datasets', 'Elementary and secondary private schools, by type of expenditure.csv')
+RAW_GRADUATION_RATE_DIR = os.path.join(RAW_DATA_DIR, 'education_datasets', 'graduation_rates')
+RAW_PARTICIPATION_RATE_DIR = os.path.join(RAW_DATA_DIR, 'education_datasets', 'participation_rates')
 
-# Processed Data Directories
-PROCESSED_EDUCATION_DIR = os.path.join(PROCESSED_DATA_DIR, 'education') # Define education processed dir
+# Processed data directories
+PROCESSED_HOUSING_DIR = os.path.join(PROCESSED_DATA_DIR, 'housing') # Added for clarity
+PROCESSED_EDUCATION_DIR = os.path.join(PROCESSED_DATA_DIR, 'education')
 
-# Output file to be saved in data/processed
+# Processed & Output file paths
 CORRECTED_DATA_FILE = os.path.join(PROCESSED_DATA_DIR, 'Population_Demographics_Corrected.csv')
 FINAL_METRICS_FILE = os.path.join(PROCESSED_DATA_DIR, 'Population_Metrics_by_Year_and_Province.csv')
 DEMOGRAPHICS_PROCESSED_FILE = os.path.join(PROCESSED_DATA_DIR, 'Population_Demographics.csv')
-PROCESSED_HOUSEHOLD_FILE = os.path.join(PROCESSED_DATA_DIR, 'housing', 'Household_Numbers_Processed.csv')
-PROCESSED_HOUSING_STARTED_FILE = os.path.join(PROCESSED_DATA_DIR, 'housing', 'HousingStarted_Processed.csv')
-PROCESSED_NHPI_FILE = os.path.join(PROCESSED_DATA_DIR, 'housing', 'NHPI_Processed.csv')
+PROCESSED_HOUSEHOLD_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'Household_Numbers_Processed.csv')
+PROCESSED_HOUSING_STARTED_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'HousingStarted_Processed.csv')
+PROCESSED_NHPI_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'NHPI_Processed.csv')
+PROCESSED_HOUSING_TYPES_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'HousingTypes_Merged.csv') # Added default name
 FINAL_MERGED_HOUSING_FILE = os.path.join(PROCESSED_DATA_DIR, 'Housing_Features_Merged.csv')
-HOUSING_FEATURES_ENGINEERED_FILE = os.path.join(PROCESSED_DATA_DIR, 'Housing_Features_Engineered.csv') # Added path for engineered housing features
-PROCESSED_EDUCATORS_FILE = os.path.join(PROCESSED_DATA_DIR, 'education', 'Educators_Processed.csv') # Added path for processed educators data
-PROCESSED_EPI_FILE = os.path.join(PROCESSED_DATA_DIR, 'education', 'EPI_Processed.csv') # Added path for processed EPI data
-PROCESSED_EXPENDITURES_FILE = os.path.join(PROCESSED_DATA_DIR, 'education', 'Expenditures_Processed.csv') # Added path for processed expenditures data
-PROCESSED_GRADUATION_RATE_FILE = os.path.join(PROCESSED_EDUCATION_DIR, 'GraduationRate_Processed.csv') # Use defined dir
-PROCESSED_PARTICIPATION_RATE_FILE = os.path.join(PROCESSED_EDUCATION_DIR, 'ParticipationRate_Processed.csv') # Use defined dir
-FINAL_MERGED_EDUCATION_FILE = os.path.join(PROCESSED_DATA_DIR, 'Education_Features_Merged.csv') # Added path for final merged education data
-FINAL_ENHANCED_EDUCATION_FILE = os.path.join(PROCESSED_DATA_DIR, 'Education_Features_Enhanced.csv') # Added path for final enhanced education data
-EDUCATION_FORECAST_FILE = os.path.join(FORECASTED_DATA_DIR, 'Education_Forecast_2024_2035.csv') # Corrected path for education forecast output
-HOUSING_METRICS_OUTPUT_FILE = os.path.join(MODELS_DIR, 'housing_model_evaluation_metrics.csv') # Added path for housing metrics
-HOUSING_FORECAST_OUTPUT_FILE = os.path.join(PROCESSED_DATA_DIR, 'housing_forecasts_next_12_years.csv') # Added path for housing forecast
-
-# Update paths for individual processed education files to use PROCESSED_EDUCATION_DIR
+HOUSING_FEATURES_ENGINEERED_FILE = os.path.join(PROCESSED_DATA_DIR, 'Housing_Features_Engineered.csv')
 PROCESSED_EDUCATORS_FILE = os.path.join(PROCESSED_EDUCATION_DIR, 'Educators_Processed.csv')
 PROCESSED_EPI_FILE = os.path.join(PROCESSED_EDUCATION_DIR, 'EPI_Processed.csv')
 PROCESSED_EXPENDITURES_FILE = os.path.join(PROCESSED_EDUCATION_DIR, 'Expenditures_Processed.csv')
+PROCESSED_GRADUATION_RATE_FILE = os.path.join(PROCESSED_EDUCATION_DIR, 'GraduationRate_Processed.csv')
+PROCESSED_PARTICIPATION_RATE_FILE = os.path.join(PROCESSED_EDUCATION_DIR, 'ParticipationRate_Processed.csv')
+FINAL_MERGED_EDUCATION_FILE = os.path.join(PROCESSED_DATA_DIR, 'Education_Features_Merged.csv')
+FINAL_ENHANCED_EDUCATION_FILE = os.path.join(PROCESSED_DATA_DIR, 'Education_Features_Enhanced.csv')
+EDUCATION_FORECAST_FILE = os.path.join(FORECASTED_DATA_DIR, 'Education_Forecast_2024_2035.csv')
+HOUSING_METRICS_OUTPUT_FILE = os.path.join(MODELS_DIR, 'housing_model_evaluation_metrics.csv')
+HOUSING_FORECAST_OUTPUT_FILE = os.path.join(FORECASTED_DATA_DIR, 'housing_forecasts_next_12_years.csv')
 
-def main():
-    """Run the data processing pipeline."""
+# --- Helper Functions ---
+
+def setup_directories():
+    """Create necessary output directories if they don't exist."""
+    logging.info("Setting up output directories...")
     os.makedirs(PROCESSED_DATA_DIR, exist_ok=True)
-    os.makedirs(FORECASTED_DATA_DIR, exist_ok=True) # Ensure forecast directory exists
-    os.makedirs(MODELS_DIR, exist_ok=True) # Ensure models directory exists
+    os.makedirs(FORECASTED_DATA_DIR, exist_ok=True)
+    os.makedirs(MODELS_DIR, exist_ok=True)
+    os.makedirs(PROCESSED_EDUCATION_DIR, exist_ok=True)
+    os.makedirs(PROCESSED_HOUSING_DIR, exist_ok=True)
+    logging.info("Output directories ensured.")
 
-    # Step 1: Correct Population Data
+# --- Pipeline Step Functions ---
+
+def run_population_correction(raw_pop_ts_file: str, can_pop_file: str, output_file: str) -> pd.DataFrame | None:
+    """
+    Corrects raw population timeseries data using Canada population data.
+
+    Args:
+        raw_pop_ts_file: Path to the raw population timeseries CSV.
+        can_pop_file: Path to the Canada population data CSV.
+        output_file: Path to save the corrected data CSV.
+
+    Returns:
+        A pandas DataFrame containing the corrected data, or None if an error occurs.
+    """
+    logging.info("Step 1: Correcting population data.")
     try:
-        corrected_df = correct_population_dataset(RAW_POPULATION_TIMESERIES_FILE, CANADA_POPULATION_FILE)
-        corrected_df.to_csv(CORRECTED_DATA_FILE, index=False)
-        logging.info("Population data corrected.")
+        corrected_df = correct_population_dataset(raw_pop_ts_file, can_pop_file)
+        corrected_df.to_csv(output_file, index=False)
+        logging.info(f"Population data corrected and saved to '{output_file}'.")
+        return corrected_df
     except FileNotFoundError as e:
-        logging.error(f"Missing file: '{e.filename}' in '{RAW_DATA_DIR}'.")
-        return
+        logging.error(f"Missing file: '{e.filename}'. Cannot correct population data.")
+        return None
     except Exception as e:
         logging.error(f"Error correcting population data: {e}")
-        return
+        return None
 
-    # Step 2: Calculate Population Metrics
+def run_population_metrics_calculation(corrected_df: pd.DataFrame, output_file: str) -> bool:
+    """
+    Calculates population metrics from the corrected population data.
+
+    Args:
+        corrected_df: DataFrame with corrected population data.
+        output_file: Path to save the calculated metrics CSV.
+
+    Returns:
+        True if successful, False otherwise.
+    """
+    logging.info("Step 2: Calculating population metrics.")
+    if corrected_df is None:
+        logging.error("Skipping population metrics calculation due to previous error.")
+        return False
     try:
-        metrics_df = calculate_population_metrics(corrected_df.copy())
-        metrics_df.to_csv(FINAL_METRICS_FILE, index=False)
-        logging.info("Population metrics calculated.")
+        metrics_df = calculate_population_metrics(corrected_df.copy()) # Use copy to avoid modifying original df
+        metrics_df.to_csv(output_file, index=False)
+        logging.info(f"Population metrics calculated and saved to '{output_file}'.")
+        return True
     except Exception as e:
         logging.error(f"Error calculating population metrics: {e}")
-        return
+        return False
 
-    # Step 3: Prepare Demographics Data
+def run_demographics_preparation(raw_file: str, output_file: str) -> bool:
+    """
+    Prepares (cleans/transforms) raw demographics data.
+
+    Args:
+        raw_file: Path to the raw demographics CSV.
+        output_file: Path to save the processed demographics CSV.
+
+    Returns:
+        True if successful, False otherwise.
+    """
+    logging.info("Step 3: Preparing demographics data.")
     try:
-        demographics_df = prepare_demographics_data(DEMOGRAPHICS_RAW_FILE)
-        demographics_df.to_csv(DEMOGRAPHICS_PROCESSED_FILE, index=False)
-        logging.info("Demographics data prepared.")
+        demographics_df = prepare_demographics_data(raw_file)
+        demographics_df.to_csv(output_file, index=False)
+        logging.info(f"Demographics data prepared and saved to '{output_file}'.")
+        return True
+    except FileNotFoundError as e:
+        logging.error(f"Missing file: '{e.filename}'. Cannot prepare demographics data.")
+        return False
     except Exception as e:
         logging.error(f"Error preparing demographics data: {e}")
-        return
+        return False
 
-    # Step 4: Process Household Data
+def run_household_data_processing(raw_dir: str, output_file: str) -> bool:
+    """
+    Processes household data files from a directory.
+
+    Args:
+        raw_dir: Directory containing raw household data files.
+        output_file: Path to save the combined/processed household data CSV.
+
+    Returns:
+        True if successful, False otherwise.
+    """
+    logging.info("Step 4: Processing household data.")
     try:
-        process_household_data(RAW_HOUSEHOLD_DIR, PROCESSED_HOUSEHOLD_FILE)
-        logging.info("Household data processed.")
+        process_household_data(raw_dir, output_file)
+        logging.info(f"Household data processed and saved to '{output_file}'.")
+        return True
     except FileNotFoundError as e:
-        logging.error(f"Missing household file: '{e.filename}' in '{RAW_HOUSEHOLD_DIR}'.")
+        logging.error(f"Missing household data folder or files: '{e.filename}' in '{raw_dir}'.")
+        return False
     except Exception as e:
         logging.error(f"Error processing household data: {e}")
+        return False
 
-    # Step 5: Process Housing Started Data
+def run_housing_started_processing(raw_file: str, output_file: str) -> bool:
+    """
+    Processes raw housing started data.
+
+    Args:
+        raw_file: Path to the raw housing started CSV.
+        output_file: Path to save the processed housing started CSV.
+
+    Returns:
+        True if successful, False otherwise.
+    """
+    logging.info("Step 5: Processing housing started data.")
     try:
-        process_housing_started_data(RAW_HOUSING_STARTED_FILE, PROCESSED_HOUSING_STARTED_FILE)
-        logging.info("Housing started data processed.")
+        process_housing_started_data(raw_file, output_file)
+        logging.info(f"Housing started data processed and saved to '{output_file}'.")
+        return True
     except FileNotFoundError as e:
-        logging.error(f"Missing file: '{e.filename}'.")
+        logging.error(f"Missing file: '{e.filename}'. Cannot process housing started data.")
+        return False
     except Exception as e:
         logging.error(f"Error processing housing started data: {e}")
+        return False
 
-    # Step 6: Process NHPI Data
+def run_nhpi_processing(raw_file: str, output_file: str) -> bool:
+    """
+    Processes raw New Housing Price Index (NHPI) data.
+
+    Args:
+        raw_file: Path to the raw NHPI CSV.
+        output_file: Path to save the processed NHPI CSV.
+
+    Returns:
+        True if successful, False otherwise.
+    """
+    logging.info("Step 6: Processing NHPI data.")
     try:
-        process_nhpi_data(RAW_NHPI_FILE, PROCESSED_NHPI_FILE)
-        logging.info("NHPI data processed.")
+        process_nhpi_data(raw_file, output_file)
+        logging.info(f"NHPI data processed and saved to '{output_file}'.")
+        return True
     except FileNotFoundError as e:
-        logging.error(f"Missing file: '{e.filename}'.")
+        logging.error(f"Missing file: '{e.filename}'. Cannot process NHPI data.")
+        return False
     except Exception as e:
         logging.error(f"Error processing NHPI data: {e}")
+        return False
 
-    # Step 7: Merge Housing Features
+def run_housing_feature_merge(household_path: str, housing_started_path: str, nhpi_path: str, output_path: str) -> bool:
+    """
+    Merges processed household, housing started, and NHPI data.
+
+    Args:
+        household_path: Path to processed household data CSV.
+        housing_started_path: Path to processed housing started data CSV.
+        nhpi_path: Path to processed NHPI data CSV.
+        output_path: Path to save the merged housing features CSV.
+
+    Returns:
+        True if successful or skipped due to missing files, False on error during merge.
+    """
+    logging.info("Step 7: Merging housing features.")
+    required_files = [household_path, housing_started_path, nhpi_path]
+    if not all(os.path.exists(f) for f in required_files):
+        missing = [f for f in required_files if not os.path.exists(f)]
+        logging.warning(f"Skipping housing features merge. Missing processed files: {', '.join(missing)}")
+        return True # Return True as skipping isn't a fatal error for the pipeline flow here
     try:
-        required_files = [PROCESSED_HOUSEHOLD_FILE, PROCESSED_HOUSING_STARTED_FILE, PROCESSED_NHPI_FILE]
-        if all(os.path.exists(f) for f in required_files):
-            merge_all_housing_features(
-                household_path=PROCESSED_HOUSEHOLD_FILE,
-                housing_started_path=PROCESSED_HOUSING_STARTED_FILE,
-                nhpi_path=PROCESSED_NHPI_FILE,
-                output_path=FINAL_MERGED_HOUSING_FILE
-            )
-            logging.info("Housing features merged.")
-        else:
-            missing = [f for f in required_files if not os.path.exists(f)]
-            logging.warning(f"Merge skipped. Missing files: {', '.join(missing)}")
+        merge_all_housing_features(
+            household_path=household_path,
+            housing_started_path=housing_started_path,
+            nhpi_path=nhpi_path,
+            output_path=output_path
+        )
+        logging.info(f"Housing features merged and saved to '{output_path}'.")
+        return True
     except Exception as e:
         logging.error(f"Error merging housing features: {e}")
+        return False
 
-    # Step 7.5: Merge Housing Type Data
+def run_housing_type_merge(input_folder: str, output_folder: str) -> bool:
+    """
+    Merges housing type data files from an input folder.
+
+    Args:
+        input_folder: Folder containing raw housing type CSVs.
+        output_folder: Folder to save the merged housing type CSV.
+
+    Returns:
+        True if successful or skipped, False on error during merge.
+    """
+    logging.info("Step 7.5: Merging housing type data.")
     try:
-        housing_types_input_folder = os.path.join(RAW_DATA_DIR, 'housing-types')
-        housing_types_output_folder = os.path.join(PROCESSED_DATA_DIR, 'housing')
-        merged_file_path = merge_housing_type_data(housing_types_input_folder, housing_types_output_folder)
-        if merged_file_path:
-            logging.info(f"Housing type data merged: {merged_file_path}")
-        else:
-            logging.warning("Housing type data merging was skipped or failed.")
+        # Note: merge_housing_type_data should ideally return the output path or status
+        # Assuming it saves to a known location or handles logging internally for now
+        merged_file_path = merge_housing_type_data(input_folder, output_folder)
+        if merged_file_path and os.path.exists(merged_file_path):
+             # Optional: Update PROCESSED_HOUSING_TYPES_FILE if function returns path
+             # global PROCESSED_HOUSING_TYPES_FILE
+             # PROCESSED_HOUSING_TYPES_FILE = merged_file_path
+             logging.info(f"Housing type data merged to: {merged_file_path}")
+        elif merged_file_path is None: # Indicates handled skip/fail within function
+             logging.warning("Housing type data merging was skipped or failed (check previous logs).")
+        else: # Function might return path even if saving failed
+             logging.warning(f"Housing type merge function ran, but output file '{merged_file_path}' may not exist.")
+        return True # Treat as non-fatal for pipeline flow
+    except FileNotFoundError:
+        logging.error(f"Error merging housing type data: Input folder not found '{input_folder}'.")
+        return False
     except Exception as e:
         logging.error(f"Error merging housing type data: {e}")
+        return False
 
-    # Step 7.6: Prepare Housing Data (Feature Engineering)
+
+def run_housing_feature_engineering(merged_file: str, output_file: str) -> bool:
+    """
+    Performs feature engineering on the merged housing data.
+
+    Args:
+        merged_file: Path to the merged housing features CSV.
+        output_file: Path to save the engineered housing features CSV.
+
+    Returns:
+        True if successful or skipped, False on error.
+    """
     logging.info("Step 7.6: Preparing housing data (feature engineering).")
+    if not os.path.exists(merged_file):
+        logging.warning(f"Skipping housing feature engineering. Merged file missing: {merged_file}")
+        return True # Non-fatal skip
     try:
-        if os.path.exists(FINAL_MERGED_HOUSING_FILE):
-            engineered_housing_df = prepare_housing_data(FINAL_MERGED_HOUSING_FILE)
-            engineered_housing_df.to_csv(HOUSING_FEATURES_ENGINEERED_FILE, index=False)
-            logging.info(f"Engineered housing features saved to '{HOUSING_FEATURES_ENGINEERED_FILE}'.")
-        else:
-            logging.warning(f"Skipping housing feature engineering because the merged file is missing: {FINAL_MERGED_HOUSING_FILE}")
+        engineered_housing_df = prepare_housing_data(merged_file)
+        engineered_housing_df.to_csv(output_file, index=False)
+        logging.info(f"Engineered housing features saved to '{output_file}'.")
+        return True
     except Exception as e:
-        logging.error(f"An unexpected error occurred during the housing feature engineering step: {e}")
+        logging.error(f"Error during housing feature engineering: {e}")
+        return False
 
-    # Step 7.7: Run Housing Forecasting
+def run_housing_forecasting(engineered_file: str, metrics_output: str, forecast_output: str) -> bool:
+    """
+    Runs the housing forecasting model.
+
+    Args:
+        engineered_file: Path to the engineered housing features CSV.
+        metrics_output: Path to save the model evaluation metrics CSV.
+        forecast_output: Path to save the forecast results CSV.
+
+    Returns:
+        True if successful or skipped, False on error.
+    """
     logging.info("Step 7.7: Running housing forecasting.")
+    if not os.path.exists(engineered_file):
+        logging.warning(f"Skipping housing forecasting. Engineered features file missing: {engineered_file}")
+        return True # Non-fatal skip
     try:
-        if os.path.exists(HOUSING_FEATURES_ENGINEERED_FILE):
-            run_housing_forecast(
-                input_csv=HOUSING_FEATURES_ENGINEERED_FILE,
-                metrics_output_csv=HOUSING_METRICS_OUTPUT_FILE,
-                forecast_output_csv=HOUSING_FORECAST_OUTPUT_FILE
-            )
-            logging.info(f"Housing forecast generated. Metrics: '{HOUSING_METRICS_OUTPUT_FILE}', Forecast: '{HOUSING_FORECAST_OUTPUT_FILE}'.")
-        else:
-            logging.warning(f"Skipping housing forecasting because the engineered housing features file is missing: {HOUSING_FEATURES_ENGINEERED_FILE}")
+        run_housing_forecast(
+            input_csv=engineered_file,
+            metrics_output_csv=metrics_output,
+            forecast_output_csv=forecast_output
+        )
+        # Specific logging is handled within run_housing_forecast
+        return True
     except Exception as e:
-        logging.error(f"An unexpected error occurred during the housing forecasting step: {e}")
+        logging.error(f"Error during housing forecasting: {e}")
+        return False
 
-
-    # Step 8: Process Educators Data
-    logging.info(f"Step 8: Processing educators data from '{RAW_EDUCATORS_FILE}'.")
+def run_educators_processing(raw_file: str, output_file: str) -> bool:
+    """Processes raw educators data."""
+    logging.info(f"Step 8: Processing educators data.")
     try:
-        # Ensure the specific subdirectory for education processed data exists
-        os.makedirs(os.path.join(PROCESSED_DATA_DIR, 'education'), exist_ok=True)
-        process_educators_data(RAW_EDUCATORS_FILE, PROCESSED_EDUCATORS_FILE)
-        logging.info(f"Educators data processed and saved to '{PROCESSED_EDUCATORS_FILE}'.")
+        process_educators_data(raw_file, output_file)
+        logging.info(f"Educators data processed and saved to '{output_file}'.")
+        return True
     except FileNotFoundError as e:
-        logging.error(f"Error processing educators data: Input file not found. Please ensure '{e.filename}' exists.")
+        logging.error(f"Error processing educators data: Input file not found '{e.filename}'.")
+        return False
     except Exception as e:
-        logging.error(f"An unexpected error occurred during educators data processing: {e}")
+        logging.error(f"Error processing educators data: {e}")
+        return False
 
-    # Step 9: Process EPI Data
-    logging.info(f"Step 9: Processing EPI data from '{RAW_EPI_FILE}'.")
+def run_epi_processing(raw_file: str, output_file: str) -> bool:
+    """Processes raw Education Price Index (EPI) data."""
+    logging.info(f"Step 9: Processing EPI data.")
     try:
-        # Ensure the specific subdirectory for education processed data exists
-        os.makedirs(os.path.join(PROCESSED_DATA_DIR, 'education'), exist_ok=True)
-        process_epi_data(RAW_EPI_FILE, PROCESSED_EPI_FILE)
-        logging.info(f"EPI data processed and saved to '{PROCESSED_EPI_FILE}'.")
+        process_epi_data(raw_file, output_file)
+        logging.info(f"EPI data processed and saved to '{output_file}'.")
+        return True
     except FileNotFoundError as e:
-        logging.error(f"Error processing EPI data: Input file not found. Please ensure '{e.filename}' exists.")
+        logging.error(f"Error processing EPI data: Input file not found '{e.filename}'.")
+        return False
     except Exception as e:
-        logging.error(f"An unexpected error occurred during EPI data processing: {e}")
+        logging.error(f"Error processing EPI data: {e}")
+        return False
 
-    # Step 10: Process Expenditures Data
-    logging.info(f"Step 10: Processing expenditures data from '{RAW_EXPENDITURES_FILE}'.")
+def run_expenditures_processing(raw_file: str, output_file: str) -> bool:
+    """Processes raw education expenditures data."""
+    logging.info(f"Step 10: Processing expenditures data.")
     try:
-        # Ensure the specific subdirectory for education processed data exists
-        os.makedirs(os.path.join(PROCESSED_DATA_DIR, 'education'), exist_ok=True)
-        process_expenditures_data(RAW_EXPENDITURES_FILE, PROCESSED_EXPENDITURES_FILE)
-        logging.info(f"Expenditures data processed and saved to '{PROCESSED_EXPENDITURES_FILE}'.")
+        process_expenditures_data(raw_file, output_file)
+        logging.info(f"Expenditures data processed and saved to '{output_file}'.")
+        return True
     except FileNotFoundError as e:
-        logging.error(f"Error processing expenditures data: Input file not found. Please ensure '{e.filename}' exists.")
+        logging.error(f"Error processing expenditures data: Input file not found '{e.filename}'.")
+        return False
     except Exception as e:
-        logging.error(f"An unexpected error occurred during expenditures data processing: {e}")
+        logging.error(f"Error processing expenditures data: {e}")
+        return False
 
-    # Step 11: Process Graduation Rate Data
-    logging.info(f"Step 11: Processing graduation rate data from '{RAW_GRADUATION_RATE_DIR}'.")
+def run_graduation_rate_processing(raw_dir: str, output_file: str) -> bool:
+    """Processes graduation rate data files from a directory."""
+    logging.info(f"Step 11: Processing graduation rate data.")
     try:
-        # Ensure the specific subdirectory for education processed data exists
-        os.makedirs(os.path.join(PROCESSED_DATA_DIR, 'education'), exist_ok=True)
-        process_graduation_rate_data(RAW_GRADUATION_RATE_DIR, PROCESSED_GRADUATION_RATE_FILE)
-        logging.info(f"Graduation rate data processed and saved to '{PROCESSED_GRADUATION_RATE_FILE}'.")
-    except FileNotFoundError as e:
-        logging.error(f"Error processing graduation rate data: Input folder not found or contains no CSV files. Please ensure '{RAW_GRADUATION_RATE_DIR}' exists and contains data.")
+        process_graduation_rate_data(raw_dir, output_file)
+        logging.info(f"Graduation rate data processed and saved to '{output_file}'.")
+        return True
+    except FileNotFoundError:
+        logging.error(f"Error processing graduation rate data: Input folder not found or empty '{raw_dir}'.")
+        return False
     except Exception as e:
-        logging.error(f"An unexpected error occurred during graduation rate data processing: {e}")
+        logging.error(f"Error processing graduation rate data: {e}")
+        return False
 
-    # Step 12: Process Participation Rate Data
-    logging.info(f"Step 12: Processing participation rate data from '{RAW_PARTICIPATION_RATE_DIR}'.")
+def run_participation_rate_processing(raw_dir: str, output_file: str) -> bool:
+    """Processes participation rate data files from a directory."""
+    logging.info(f"Step 12: Processing participation rate data.")
     try:
-        # Ensure the specific subdirectory for education processed data exists
-        os.makedirs(os.path.join(PROCESSED_DATA_DIR, 'education'), exist_ok=True)
-        process_participation_rate_data(RAW_PARTICIPATION_RATE_DIR, PROCESSED_PARTICIPATION_RATE_FILE)
-        logging.info(f"Participation rate data processed and saved to '{PROCESSED_PARTICIPATION_RATE_FILE}'.")
-    except FileNotFoundError as e:
-        logging.error(f"Error processing participation rate data: Input folder not found or contains no CSV files. Please ensure '{RAW_PARTICIPATION_RATE_DIR}' exists and contains data.")
+        process_participation_rate_data(raw_dir, output_file)
+        logging.info(f"Participation rate data processed and saved to '{output_file}'.")
+        return True
+    except FileNotFoundError:
+        logging.error(f"Error processing participation rate data: Input folder not found or empty '{raw_dir}'.")
+        return False
     except Exception as e:
-        logging.error(f"An unexpected error occurred during participation rate data processing: {e}")
+        logging.error(f"Error processing participation rate data: {e}")
+        return False
 
-    # Step 13: Merge Education Features
+def run_education_feature_merge(processed_edu_dir: str, output_path: str) -> bool:
+    """Merges all processed education-related datasets."""
     logging.info("Step 13: Merging all processed education features.")
+    required_edu_files = [
+        PROCESSED_EDUCATORS_FILE, PROCESSED_EPI_FILE, PROCESSED_EXPENDITURES_FILE,
+        PROCESSED_GRADUATION_RATE_FILE, PROCESSED_PARTICIPATION_RATE_FILE
+    ]
+    if not all(os.path.exists(f) for f in required_edu_files):
+        missing_edu = [f for f in required_edu_files if not os.path.exists(f)]
+        logging.warning(f"Skipping final education merge. Missing processed files: {', '.join(missing_edu)}")
+        return True # Non-fatal skip
     try:
-        # Check if all required input files exist before attempting merge
-        required_edu_files = [
-            PROCESSED_EDUCATORS_FILE, PROCESSED_EPI_FILE, PROCESSED_EXPENDITURES_FILE,
-            PROCESSED_GRADUATION_RATE_FILE, PROCESSED_PARTICIPATION_RATE_FILE
-        ]
-        if all(os.path.exists(f) for f in required_edu_files):
-            merge_all_education_features(
-                processed_education_dir=PROCESSED_EDUCATION_DIR,
-                output_path=FINAL_MERGED_EDUCATION_FILE
-            )
-            logging.info(f"Final merged education data saved to '{FINAL_MERGED_EDUCATION_FILE}'.")
-        else:
-            missing_edu = [f for f in required_edu_files if not os.path.exists(f)]
-            logging.warning(f"Skipping final education merge step because one or more input files are missing: {', '.join(missing_edu)}")
-
+        merge_all_education_features(
+            processed_education_dir=processed_edu_dir,
+            output_path=output_path
+        )
+        logging.info(f"Final merged education data saved to '{output_path}'.")
+        return True
     except Exception as e:
-        logging.error(f"An unexpected error occurred during the final education merge step: {e}")
+        logging.error(f"Error during final education merge: {e}")
+        return False
 
-    # Step 14: Enhance Merged Education Data (Interpolation & Feature Engineering)
+def run_education_enhancement(merged_file: str, output_file: str) -> bool:
+    """Enhances merged education data (interpolation, feature engineering)."""
     logging.info("Step 14: Enhancing merged education data.")
+    if not os.path.exists(merged_file):
+        logging.warning(f"Skipping education data enhancement. Merged file missing: {merged_file}")
+        return True # Non-fatal skip
     try:
-        if os.path.exists(FINAL_MERGED_EDUCATION_FILE):
-            enhance_education_data(
-                input_path=FINAL_MERGED_EDUCATION_FILE,
-                output_path=FINAL_ENHANCED_EDUCATION_FILE
-            )
-            logging.info(f"Final enhanced education data saved to '{FINAL_ENHANCED_EDUCATION_FILE}'.")
-        else:
-            logging.warning(f"Skipping education data enhancement because the merged file is missing: {FINAL_MERGED_EDUCATION_FILE}")
+        enhance_education_data(
+            input_path=merged_file,
+            output_path=output_file
+        )
+        logging.info(f"Final enhanced education data saved to '{output_file}'.")
+        return True
     except Exception as e:
-        logging.error(f"An unexpected error occurred during the education data enhancement step: {e}")
+        logging.error(f"Error during education data enhancement: {e}")
+        return False
 
-    # Step 15: Run Education Forecasting
+def run_education_forecasting(enhanced_file: str, output_file: str) -> bool:
+    """Runs the education forecasting model."""
     logging.info("Step 15: Running education forecasting.")
+    if not os.path.exists(enhanced_file):
+        logging.warning(f"Skipping education forecasting. Enhanced file missing: {enhanced_file}")
+        return True # Non-fatal skip
     try:
-        if os.path.exists(FINAL_ENHANCED_EDUCATION_FILE):
-            forecast_education_data(
-                input_path=FINAL_ENHANCED_EDUCATION_FILE,
-                output_path=EDUCATION_FORECAST_FILE # Pass the full output file path
-            )
-            # The function inside education_forecaster handles logging success/failure and path
-        else:
-            logging.warning(f"Skipping education forecasting because the enhanced education file is missing: {FINAL_ENHANCED_EDUCATION_FILE}")
+        forecast_education_data(
+            input_path=enhanced_file,
+            output_path=output_file
+        )
+        # Specific logging handled within forecast_education_data
+        return True
     except Exception as e:
-        logging.error(f"An unexpected error occurred during the education forecasting step: {e}")
+        logging.error(f"Error during education forecasting: {e}")
+        return False
+
+def print_summary():
+    """Prints a summary of generated output files and their status."""
+    logging.info("Pipeline execution finished. Printing summary...")
+    print("\n--- Final Output File Summary ---")
+    files_to_print = {
+        "Corrected Population": CORRECTED_DATA_FILE,
+        "Population Metrics": FINAL_METRICS_FILE,
+        "Processed Demographics": DEMOGRAPHICS_PROCESSED_FILE,
+        "Processed Household Data": PROCESSED_HOUSEHOLD_FILE,
+        "Processed Housing Started": PROCESSED_HOUSING_STARTED_FILE,
+        "Processed NHPI": PROCESSED_NHPI_FILE,
+        #"Processed Housing Types": PROCESSED_HOUSING_TYPES_FILE, # Optional: uncomment if path is reliable
+        "Merged Housing Features": FINAL_MERGED_HOUSING_FILE,
+        "Engineered Housing Features": HOUSING_FEATURES_ENGINEERED_FILE,
+        "Processed Educators Data": PROCESSED_EDUCATORS_FILE,
+        "Processed EPI Data": PROCESSED_EPI_FILE,
+        "Processed Expenditures Data": PROCESSED_EXPENDITURES_FILE,
+        "Processed Graduation Rate": PROCESSED_GRADUATION_RATE_FILE,
+        "Processed Participation Rate": PROCESSED_PARTICIPATION_RATE_FILE,
+        "Merged Education Features": FINAL_MERGED_EDUCATION_FILE,
+        "Enhanced Education Features": FINAL_ENHANCED_EDUCATION_FILE,
+        "Housing Model Metrics": HOUSING_METRICS_OUTPUT_FILE,
+        "Housing Forecast": HOUSING_FORECAST_OUTPUT_FILE,
+        "Education Forecast": EDUCATION_FORECAST_FILE,
+    }
+    for name, path in files_to_print.items():
+        status = "Generated" if os.path.exists(path) else "Not generated (check logs)"
+        print(f"- {name}: {path} ({status})")
+    print("--- End Summary ---")
 
 
-    logging.info("Pipeline completed.")
-    print("Final processed, model, and forecast files:")
-    print(f"- Population Metrics: {FINAL_METRICS_FILE}")
-    print(f"- Demographics: {DEMOGRAPHICS_PROCESSED_FILE}")
-    if os.path.exists(PROCESSED_HOUSEHOLD_FILE):
-        print(f"- Household Data: {PROCESSED_HOUSEHOLD_FILE}")
-    if os.path.exists(PROCESSED_HOUSING_STARTED_FILE):
-        print(f"- Housing Started: {PROCESSED_HOUSING_STARTED_FILE}")
-    if os.path.exists(PROCESSED_NHPI_FILE):
-        print(f"- NHPI: {PROCESSED_NHPI_FILE}")
-    if os.path.exists(FINAL_MERGED_HOUSING_FILE):
-        print(f"- Merged Housing Features: {FINAL_MERGED_HOUSING_FILE}")
-    if os.path.exists(HOUSING_FEATURES_ENGINEERED_FILE):
-        print(f"- Engineered Housing Features: {HOUSING_FEATURES_ENGINEERED_FILE}")
-    if os.path.exists(PROCESSED_EDUCATORS_FILE):
-        print(f"- Educators Data: {PROCESSED_EDUCATORS_FILE}")
-    if os.path.exists(PROCESSED_EPI_FILE):
-        print(f"- EPI Data: {PROCESSED_EPI_FILE}")
-    if os.path.exists(PROCESSED_EXPENDITURES_FILE):
-        print(f"- Expenditures Data: {PROCESSED_EXPENDITURES_FILE}")
-    if os.path.exists(PROCESSED_GRADUATION_RATE_FILE):
-        print(f"- Graduation Rate Data: {PROCESSED_GRADUATION_RATE_FILE}")
-    if os.path.exists(PROCESSED_PARTICIPATION_RATE_FILE):
-        print(f"- Participation Rate Data: {PROCESSED_PARTICIPATION_RATE_FILE}")
-    if os.path.exists(FINAL_MERGED_EDUCATION_FILE):
-        print(f"- Merged Education Features: {FINAL_MERGED_EDUCATION_FILE}")
-    if os.path.exists(FINAL_ENHANCED_EDUCATION_FILE):
-        print(f"- Enhanced Education Features: {FINAL_ENHANCED_EDUCATION_FILE}")
+# --- Main Pipeline Execution ---
 
-    if os.path.exists(HOUSING_METRICS_OUTPUT_FILE):
-        print(f"- Housing Metrics: {HOUSING_METRICS_OUTPUT_FILE}")
-    if os.path.exists(HOUSING_FORECAST_OUTPUT_FILE):
-        print(f"- Housing Forecast: {HOUSING_FORECAST_OUTPUT_FILE}")
-    if os.path.exists(EDUCATION_FORECAST_FILE):
-        print(f"- Education Forecast: {EDUCATION_FORECAST_FILE}")
+def main():
+    """Runs the complete data processing and forecasting pipeline."""
+    setup_directories()
+
+    # --- Population Processing ---
+    corrected_pop_df = run_population_correction(
+        RAW_POPULATION_TIMESERIES_FILE, CANADA_POPULATION_FILE, CORRECTED_DATA_FILE
+    )
+    if corrected_pop_df is None:
+        logging.critical("Population correction failed. Cannot proceed with dependent steps. Exiting.")
+        return # Stop pipeline if core population data fails
+
+    run_population_metrics_calculation(corrected_pop_df, FINAL_METRICS_FILE)
+    run_demographics_preparation(DEMOGRAPHICS_RAW_FILE, DEMOGRAPHICS_PROCESSED_FILE)
+
+    # --- Housing Processing & Forecasting ---
+    run_household_data_processing(RAW_HOUSEHOLD_DIR, PROCESSED_HOUSEHOLD_FILE)
+    run_housing_started_processing(RAW_HOUSING_STARTED_FILE, PROCESSED_HOUSING_STARTED_FILE)
+    run_nhpi_processing(RAW_NHPI_FILE, PROCESSED_NHPI_FILE)
+    run_housing_feature_merge(
+        PROCESSED_HOUSEHOLD_FILE, PROCESSED_HOUSING_STARTED_FILE, PROCESSED_NHPI_FILE, FINAL_MERGED_HOUSING_FILE
+    )
+    run_housing_type_merge(RAW_HOUSING_TYPES_DIR, PROCESSED_HOUSING_DIR) # Pass output *folder*
+    run_housing_feature_engineering(FINAL_MERGED_HOUSING_FILE, HOUSING_FEATURES_ENGINEERED_FILE)
+    run_housing_forecasting(
+        HOUSING_FEATURES_ENGINEERED_FILE, HOUSING_METRICS_OUTPUT_FILE, HOUSING_FORECAST_OUTPUT_FILE
+    )
+
+    # --- Education Processing & Forecasting ---
+    run_educators_processing(RAW_EDUCATORS_FILE, PROCESSED_EDUCATORS_FILE)
+    run_epi_processing(RAW_EPI_FILE, PROCESSED_EPI_FILE)
+    run_expenditures_processing(RAW_EXPENDITURES_FILE, PROCESSED_EXPENDITURES_FILE)
+    run_graduation_rate_processing(RAW_GRADUATION_RATE_DIR, PROCESSED_GRADUATION_RATE_FILE)
+    run_participation_rate_processing(RAW_PARTICIPATION_RATE_DIR, PROCESSED_PARTICIPATION_RATE_FILE)
+    run_education_feature_merge(PROCESSED_EDUCATION_DIR, FINAL_MERGED_EDUCATION_FILE)
+    run_education_enhancement(FINAL_MERGED_EDUCATION_FILE, FINAL_ENHANCED_EDUCATION_FILE)
+    run_education_forecasting(FINAL_ENHANCED_EDUCATION_FILE, EDUCATION_FORECAST_FILE)
+
+    # --- Final Summary ---
+    print_summary()
 
 
 if __name__ == '__main__':
     main()
+
+
+

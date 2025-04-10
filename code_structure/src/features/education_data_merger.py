@@ -4,7 +4,7 @@ import logging
 from functools import reduce
 
 # Setup logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_processed_education_data(processed_dir):
     """Loads the five processed education datasets."""

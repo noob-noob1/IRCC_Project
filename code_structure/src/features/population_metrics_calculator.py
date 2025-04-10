@@ -3,7 +3,7 @@ import numpy as np # Import numpy for safe division
 import logging
 
 # Configure logging: You can adjust the level and format as needed
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def calculate_population_metrics(df):
     """
