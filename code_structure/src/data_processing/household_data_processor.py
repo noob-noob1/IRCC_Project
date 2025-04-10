@@ -164,11 +164,3 @@ def process_household_data(raw_data_dir, processed_output_path):
         print(f"Processing complete. Cleaned dataset saved as '{processed_output_path}'.")
     except Exception as e:
         print(f"Error saving processed data to {processed_output_path}: {e}")
-
-if __name__ == '__main__':
-    # Example usage when running the script directly
-    # Define paths relative to the project root (c:/ircc project)
-    RAW_DIR = 'data/raw/household_numbers'
-    PROCESSED_PATH = 'data/processed/housing/Household_Numbers_Processed.csv'  # Updated path
-
-    process_household_data(RAW_DIR, PROCESSED_PATH)

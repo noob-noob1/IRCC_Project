@@ -136,12 +136,3 @@ def process_expenditures_data(input_path, output_path):
         logging.error(f"Missing expected column during expenditures processing: {e}. Aborting.")
     except Exception as e:
         logging.error(f"An unexpected error occurred during the expenditures processing pipeline: {e}")
-
-if __name__ == '__main__':
-    # Example usage: Define paths relative to the project root
-    raw_dir = 'data/raw/education_datasets'
-    processed_dir = 'data/processed/education'
-    input_file = os.path.join(raw_dir, 'Elementary and secondary private schools, by type of expenditure.csv')
-    output_file = os.path.join(processed_dir, 'Expenditures_Processed.csv')
-
-    process_expenditures_data(input_file, output_file)

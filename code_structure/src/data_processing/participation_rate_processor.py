@@ -126,11 +126,3 @@ def process_participation_rate_data(input_folder_path, output_path):
          logging.error(f"Value error during participation rate processing: {e}. Aborting.")
     except Exception as e:
         logging.error(f"An unexpected error occurred during the participation rate processing pipeline: {e}")
-
-if __name__ == '__main__':
-    # Example usage: Define paths relative to the project root
-    raw_dir = 'data/raw/education_datasets/participation_rates'
-    processed_dir = 'data/processed/education'
-    output_file = os.path.join(processed_dir, 'ParticipationRate_Processed.csv')
-
-    process_participation_rate_data(raw_dir, output_file)

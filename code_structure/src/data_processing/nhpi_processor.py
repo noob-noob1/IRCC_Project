@@ -60,14 +60,3 @@ def process_nhpi_data(input_path, output_path):
     df_filtered = filter_nhpi_by_geo(df_transformed)
     save_processed_nhpi(df_filtered, output_path)
 
-if __name__ == '__main__':
-    # Example usage: Adjust paths as necessary if run directly
-    # Assumes the script is run from within the src/data_processing directory
-    raw_file = '../../data/raw/NHPI.csv'
-    processed_file = '../../data/processed/housing/NHPI_Processed.csv'  # Updated path
-    try:
-        process_nhpi_data(raw_file, processed_file)
-    except FileNotFoundError as e:
-        print(e)
-    except Exception as e:
-        print(f"An error occurred during NHPI processing: {e}")

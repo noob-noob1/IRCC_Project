@@ -103,10 +103,3 @@ def merge_all_education_features(processed_education_dir, output_path):
          logging.error(f"Aborting merge due to data error: {e}")
     except Exception as e:
         logging.error(f"An unexpected error occurred during the education merge pipeline: {e}")
-
-if __name__ == '__main__':
-    # Example usage: Define paths relative to the project root
-    processed_dir = 'data/processed/education'
-    output_file = os.path.join('data/processed', 'Education_Features_Merged.csv')  # Save in parent processed dir
-
-    merge_all_education_features(processed_dir, output_file)

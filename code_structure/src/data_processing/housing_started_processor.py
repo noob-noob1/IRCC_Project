@@ -116,9 +116,3 @@ def process_housing_started_data(input_path, output_path):
     df_distributed = apply_distribution(df_filtered_geos)
     df_final = finalize_data(df_distributed)
     save_data(df_final, output_path)
-
-if __name__ == '__main__':
-    # Example usage:
-    raw_path = '../../data/raw/HousingStarted_Raw.csv'  # Adjust relative path if needed
-    processed_path = '../../data/processed/housing/HousingStarted_Processed.csv'  # Updated path
-    process_housing_started_data(raw_path, processed_path)

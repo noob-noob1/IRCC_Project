@@ -13,7 +13,7 @@ from src.data_processing.housing_started_processor import process_housing_starte
 from src.data_processing.housing_type_merger import merge_housing_type_data
 from src.data_processing.nhpi_processor import process_nhpi_data
 from src.data_processing.participation_rate_processor import process_participation_rate_data
-from src.data_processing.population_data_corrector import correct_population_dataset
+from src.data_processing.population_demographics_processor import correct_population_dataset as process_population_demographics # New import
 
 # Data Demographics Imports
 from src.data_demographics.data_preparation import prepare_demographics_data
@@ -28,6 +28,7 @@ from src.features.population_metrics_calculator import calculate_population_metr
 # Machine Learning Imports
 from src.machine_learning.education_forecaster import forecast_education_data
 from src.machine_learning.housing_forecaster import run_housing_forecast
+from src.machine_learning.housing_type_predictor import predict_housing_types # Added import
 
 # --- Configuration ---
 
@@ -45,9 +46,9 @@ MODELS_DIR = os.path.join(BASE_DIR, 'models')
 
 # Raw data file paths
 RAW_POPULATION_TIMESERIES_FILE = os.path.join(RAW_DATA_DIR, 'Population Timeseries.csv')
-print(RAW_POPULATION_TIMESERIES_FILE)
 CANADA_POPULATION_FILE = os.path.join(RAW_DATA_DIR, 'canada_population_data.csv')
-DEMOGRAPHICS_RAW_FILE = os.path.join(RAW_DATA_DIR, 'population_by_age_and_gender.csv')
+RAW_PROVINCES_AGE_GENDER_FILE = os.path.join(RAW_DATA_DIR, 'Demographic_data', 'Age Gender Distribution Provinces.csv') # New constant
+RAW_CANADA_AGE_GENDER_FILE = os.path.join(RAW_DATA_DIR, 'Demographic_data', 'Age Gender Distribution Canada.csv') # New constant
 RAW_HOUSING_STARTED_FILE = os.path.join(RAW_DATA_DIR, 'HousingStarted_Raw.csv')
 RAW_NHPI_FILE = os.path.join(RAW_DATA_DIR, 'NHPI.csv')
 RAW_HOUSEHOLD_DIR = os.path.join(RAW_DATA_DIR, 'household_numbers')
@@ -63,9 +64,8 @@ PROCESSED_HOUSING_DIR = os.path.join(PROCESSED_DATA_DIR, 'housing') # Added for 
 PROCESSED_EDUCATION_DIR = os.path.join(PROCESSED_DATA_DIR, 'education')
 
 # Processed & Output file paths
-CORRECTED_DATA_FILE = os.path.join(PROCESSED_DATA_DIR, 'Population_Demographics_Corrected.csv')
-FINAL_METRICS_FILE = os.path.join(PROCESSED_DATA_DIR, 'Population_Metrics_by_Year_and_Province.csv')
-DEMOGRAPHICS_PROCESSED_FILE = os.path.join(PROCESSED_DATA_DIR, 'Population_Demographics.csv')
+FINAL_POPULATION_DEMOGRAPHICS_FILE = os.path.join(PROCESSED_DATA_DIR, 'Population_Demographics_by_Year_and_Province_and_Canada.csv') # New output file
+FINAL_METRICS_FILE = os.path.join(PROCESSED_DATA_DIR, 'Population_Metrics_by_Year_and_Province.csv') # Keep for separate metrics calculation
 PROCESSED_HOUSEHOLD_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'Household_Numbers_Processed.csv')
 PROCESSED_HOUSING_STARTED_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'HousingStarted_Processed.csv')
 PROCESSED_NHPI_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'NHPI_Processed.csv')
@@ -82,6 +82,8 @@ FINAL_ENHANCED_EDUCATION_FILE = os.path.join(PROCESSED_DATA_DIR, 'Education_Feat
 EDUCATION_FORECAST_FILE = os.path.join(FORECASTED_DATA_DIR, 'Education_Forecast_2024_2035.csv')
 HOUSING_METRICS_OUTPUT_FILE = os.path.join(MODELS_DIR, 'housing_model_evaluation_metrics.csv')
 HOUSING_FORECAST_OUTPUT_FILE = os.path.join(FORECASTED_DATA_DIR, 'housing_forecasts_next_12_years.csv')
+HOUSING_TYPE_PREDICTIONS_INPUT_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'Housing_Types_Merged.csv') # Input for type prediction
+HOUSING_TYPE_PREDICTIONS_OUTPUT_FILE = os.path.join(FORECASTED_DATA_DIR, 'housing_type_predictions.csv') # Output for type prediction
 
 # --- Helper Functions ---
 
@@ -97,77 +99,73 @@ def setup_directories():
 
 # --- Pipeline Step Functions ---
 
-def run_population_correction(raw_pop_ts_file: str, can_pop_file: str, output_file: str) -> pd.DataFrame | None:
+def run_population_demographics_processing(
+    pop_ts_file: str,
+    can_pop_file: str,
+    prov_age_gender_file: str,
+    can_age_gender_file: str,
+    output_file: str
+) -> pd.DataFrame | None:
     """
-    Corrects raw population timeseries data using Canada population data.
+    Runs the comprehensive population and demographics processing using the new module.
 
     Args:
-        raw_pop_ts_file: Path to the raw population timeseries CSV.
+        pop_ts_file: Path to the raw population timeseries CSV.
         can_pop_file: Path to the Canada population data CSV.
-        output_file: Path to save the corrected data CSV.
+        prov_age_gender_file: Path to the provinces age/gender distribution CSV.
+        can_age_gender_file: Path to the Canada age/gender distribution CSV.
+        output_file: Path to save the final processed demographics CSV.
 
     Returns:
-        A pandas DataFrame containing the corrected data, or None if an error occurs.
+        A pandas DataFrame containing the processed data, or None if an error occurs.
     """
-    logging.info("Step 1: Correcting population data.")
+    logging.info("Step 1: Processing Population and Demographics Data.")
     try:
-        corrected_df = correct_population_dataset(raw_pop_ts_file, can_pop_file)
-        corrected_df.to_csv(output_file, index=False)
-        logging.info(f"Population data corrected and saved to '{output_file}'.")
-        return corrected_df
+        processed_df = process_population_demographics(
+            file_path=pop_ts_file,
+            canada_population_file=can_pop_file,
+            provinces_age_gender_file=prov_age_gender_file,
+            canada_age_gender_file=can_age_gender_file,
+            output_path=output_file # Pass the output path directly to the module function
+        )
+        if processed_df is not None:
+            logging.info(f"Population and demographics data processed and saved to '{output_file}'.")
+            return processed_df
+        else:
+            logging.error("Population and demographics processing failed (check module logs).")
+            return None
     except FileNotFoundError as e:
-        logging.error(f"Missing file: '{e.filename}'. Cannot correct population data.")
+        logging.error(f"Missing input file for demographics processing: '{e.filename}'.")
         return None
     except Exception as e:
-        logging.error(f"Error correcting population data: {e}")
+        logging.error(f"Error during population/demographics processing step: {e}")
         return None
 
-def run_population_metrics_calculation(corrected_df: pd.DataFrame, output_file: str) -> bool:
+
+def run_population_metrics_calculation(input_demographics_df: pd.DataFrame, output_file: str) -> bool:
     """
-    Calculates population metrics from the corrected population data.
+    Calculates population metrics from the processed population/demographics data.
 
     Args:
-        corrected_df: DataFrame with corrected population data.
+        input_demographics_df: DataFrame with processed population and demographics data.
         output_file: Path to save the calculated metrics CSV.
 
     Returns:
         True if successful, False otherwise.
     """
     logging.info("Step 2: Calculating population metrics.")
-    if corrected_df is None:
-        logging.error("Skipping population metrics calculation due to previous error.")
+    if input_demographics_df is None:
+        logging.error("Skipping population metrics calculation: Input demographics DataFrame is None.")
         return False
     try:
-        metrics_df = calculate_population_metrics(corrected_df.copy()) # Use copy to avoid modifying original df
+        # Assuming calculate_population_metrics can work with the structure of the new DataFrame
+        # It might need adjustments if its expected input columns changed significantly.
+        metrics_df = calculate_population_metrics(input_demographics_df.copy()) # Use copy
         metrics_df.to_csv(output_file, index=False)
         logging.info(f"Population metrics calculated and saved to '{output_file}'.")
         return True
     except Exception as e:
         logging.error(f"Error calculating population metrics: {e}")
-        return False
-
-def run_demographics_preparation(raw_file: str, output_file: str) -> bool:
-    """
-    Prepares (cleans/transforms) raw demographics data.
-
-    Args:
-        raw_file: Path to the raw demographics CSV.
-        output_file: Path to save the processed demographics CSV.
-
-    Returns:
-        True if successful, False otherwise.
-    """
-    logging.info("Step 3: Preparing demographics data.")
-    try:
-        demographics_df = prepare_demographics_data(raw_file)
-        demographics_df.to_csv(output_file, index=False)
-        logging.info(f"Demographics data prepared and saved to '{output_file}'.")
-        return True
-    except FileNotFoundError as e:
-        logging.error(f"Missing file: '{e.filename}'. Cannot prepare demographics data.")
-        return False
-    except Exception as e:
-        logging.error(f"Error preparing demographics data: {e}")
         return False
 
 def run_household_data_processing(raw_dir: str, output_file: str) -> bool:
@@ -288,20 +286,48 @@ def run_housing_type_merge(input_folder: str, output_folder: str) -> bool:
         # Assuming it saves to a known location or handles logging internally for now
         merged_file_path = merge_housing_type_data(input_folder, output_folder)
         if merged_file_path and os.path.exists(merged_file_path):
-             # Optional: Update PROCESSED_HOUSING_TYPES_FILE if function returns path
-             # global PROCESSED_HOUSING_TYPES_FILE
-             # PROCESSED_HOUSING_TYPES_FILE = merged_file_path
-             logging.info(f"Housing type data merged to: {merged_file_path}")
+            logging.info(f"Housing type data merged to: {merged_file_path}")
         elif merged_file_path is None: # Indicates handled skip/fail within function
-             logging.warning("Housing type data merging was skipped or failed (check previous logs).")
+            logging.warning("Housing type data merging was skipped or failed (check previous logs).")
         else: # Function might return path even if saving failed
-             logging.warning(f"Housing type merge function ran, but output file '{merged_file_path}' may not exist.")
+            logging.warning(f"Housing type merge function ran, but output file '{merged_file_path}' may not exist.")
         return True # Treat as non-fatal for pipeline flow
     except FileNotFoundError:
         logging.error(f"Error merging housing type data: Input folder not found '{input_folder}'.")
         return False
     except Exception as e:
         logging.error(f"Error merging housing type data: {e}")
+        return False
+
+# --- New Pipeline Step for Housing Type Prediction ---
+def run_housing_type_prediction(input_file: str, output_file: str) -> bool:
+    """
+    Runs the housing type prediction based on year filtering.
+
+    Args:
+        input_file: Path to the merged housing types CSV.
+        output_file: Path to save the housing type predictions CSV.
+
+    Returns:
+        True if successful or skipped, False on error.
+    """
+    logging.info("Step 7.8: Running housing type prediction (filtering).")
+    if not os.path.exists(input_file):
+        logging.warning(f"Skipping housing type prediction. Input file missing: {input_file}")
+        # Check if the file name used here matches the actual output of run_housing_type_merge
+        # It might be PROCESSED_HOUSING_TYPES_FILE if that global var was updated reliably
+        if input_file != PROCESSED_HOUSING_TYPES_FILE and os.path.exists(PROCESSED_HOUSING_TYPES_FILE):
+             logging.warning(f"Attempting prediction with potentially correct file: {PROCESSED_HOUSING_TYPES_FILE}")
+             input_file = PROCESSED_HOUSING_TYPES_FILE # Try the potentially correct path
+        else:
+             return True # Still skip if neither path works
+
+    try:
+        predict_housing_types(input_file, output_file)
+        # Logging is handled within predict_housing_types
+        return True
+    except Exception as e:
+        logging.error(f"Error during housing type prediction: {e}")
         return False
 
 
@@ -488,13 +514,11 @@ def print_summary():
     logging.info("Pipeline execution finished. Printing summary...")
     print("\n--- Final Output File Summary ---")
     files_to_print = {
-        "Corrected Population": CORRECTED_DATA_FILE,
+        "Processed Population & Demographics": FINAL_POPULATION_DEMOGRAPHICS_FILE, # Updated entry
         "Population Metrics": FINAL_METRICS_FILE,
-        "Processed Demographics": DEMOGRAPHICS_PROCESSED_FILE,
         "Processed Household Data": PROCESSED_HOUSEHOLD_FILE,
         "Processed Housing Started": PROCESSED_HOUSING_STARTED_FILE,
         "Processed NHPI": PROCESSED_NHPI_FILE,
-        #"Processed Housing Types": PROCESSED_HOUSING_TYPES_FILE, # Optional: uncomment if path is reliable
         "Merged Housing Features": FINAL_MERGED_HOUSING_FILE,
         "Engineered Housing Features": HOUSING_FEATURES_ENGINEERED_FILE,
         "Processed Educators Data": PROCESSED_EDUCATORS_FILE,
@@ -506,6 +530,7 @@ def print_summary():
         "Enhanced Education Features": FINAL_ENHANCED_EDUCATION_FILE,
         "Housing Model Metrics": HOUSING_METRICS_OUTPUT_FILE,
         "Housing Forecast": HOUSING_FORECAST_OUTPUT_FILE,
+        "Housing Type Predictions": HOUSING_TYPE_PREDICTIONS_OUTPUT_FILE, # Added
         "Education Forecast": EDUCATION_FORECAST_FILE,
     }
     for name, path in files_to_print.items():
@@ -520,16 +545,22 @@ def main():
     """Runs the complete data processing and forecasting pipeline."""
     setup_directories()
 
-    # --- Population Processing ---
-    corrected_pop_df = run_population_correction(
-        RAW_POPULATION_TIMESERIES_FILE, CANADA_POPULATION_FILE, CORRECTED_DATA_FILE
+    # --- Population & Demographics Processing ---
+    # Run the new comprehensive processing step
+    processed_pop_demo_df = run_population_demographics_processing(
+        pop_ts_file=RAW_POPULATION_TIMESERIES_FILE,
+        can_pop_file=CANADA_POPULATION_FILE,
+        prov_age_gender_file=RAW_PROVINCES_AGE_GENDER_FILE,
+        can_age_gender_file=RAW_CANADA_AGE_GENDER_FILE,
+        output_file=FINAL_POPULATION_DEMOGRAPHICS_FILE
     )
-    if corrected_pop_df is None:
-        logging.critical("Population correction failed. Cannot proceed with dependent steps. Exiting.")
-        return # Stop pipeline if core population data fails
 
-    run_population_metrics_calculation(corrected_pop_df, FINAL_METRICS_FILE)
-    run_demographics_preparation(DEMOGRAPHICS_RAW_FILE, DEMOGRAPHICS_PROCESSED_FILE)
+    if processed_pop_demo_df is None:
+        logging.critical("Population and demographics processing failed. Cannot proceed with dependent steps. Exiting.")
+        return # Stop pipeline if this core step fails
+
+    # Run metrics calculation using the output of the new step
+    run_population_metrics_calculation(processed_pop_demo_df, FINAL_METRICS_FILE)
 
     # --- Housing Processing & Forecasting ---
     run_household_data_processing(RAW_HOUSEHOLD_DIR, PROCESSED_HOUSEHOLD_FILE)
@@ -543,6 +574,8 @@ def main():
     run_housing_forecasting(
         HOUSING_FEATURES_ENGINEERED_FILE, HOUSING_METRICS_OUTPUT_FILE, HOUSING_FORECAST_OUTPUT_FILE
     )
+    # Run the new housing type prediction step
+    run_housing_type_prediction(HOUSING_TYPE_PREDICTIONS_INPUT_FILE, HOUSING_TYPE_PREDICTIONS_OUTPUT_FILE)
 
     # --- Education Processing & Forecasting ---
     run_educators_processing(RAW_EDUCATORS_FILE, PROCESSED_EDUCATORS_FILE)
@@ -560,6 +593,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-

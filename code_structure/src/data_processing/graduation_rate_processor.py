@@ -3,7 +3,6 @@ import os
 import glob
 import logging
 
-# Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_and_merge_graduation_data(folder_path):
@@ -20,13 +19,12 @@ def load_and_merge_graduation_data(folder_path):
     for file in csv_files:
         try:
             df = pd.read_csv(file)
-            # Optional: df['Source_File'] = os.path.basename(file)
             dfs.append(df)
             logging.info(f"Loaded {os.path.basename(file)}")
         except Exception as e:
             logging.error(f"Error loading file {file}: {e}")
-            # Decide whether to skip the file or raise the error
-            # raise # Uncomment to stop processing if a file fails to load
+            # Consider raising the error if loading a single file is critical
+            # raise
 
     if not dfs:
         logging.error("No dataframes were loaded successfully.")
@@ -60,7 +58,7 @@ def clean_pivot_group_graduation(df):
         logging.error(f"Pivot failed. Error: {e}")
         # Handle duplicates if necessary
         logging.info("Attempting pivot after grouping duplicates...")
-        df_agg = df_selected.groupby(['REF_DATE', 'GEO', 'Graduation rate'], as_index=False)['VALUE'].mean() # or .first()
+        df_agg = df_selected.groupby(['REF_DATE', 'GEO', 'Graduation rate'], as_index=False)['VALUE'].mean()
         df_agg.insert(0, 'Index', range(1, len(df_agg) + 1))
         df_pivot = df_agg.pivot(index=['REF_DATE', 'GEO', 'Index'], columns="Graduation rate", values='VALUE').reset_index()
 
@@ -141,11 +139,3 @@ def process_graduation_rate_data(input_folder_path, output_path):
          logging.error(f"Value error during graduation rate processing: {e}. Aborting.")
     except Exception as e:
         logging.error(f"An unexpected error occurred during the graduation rate processing pipeline: {e}")
-
-if __name__ == '__main__':
-    # Example usage: Define paths relative to the project root
-    raw_dir = 'data/raw/education_datasets/graduation_rates'
-    processed_dir = 'data/processed/education'
-    output_file = os.path.join(processed_dir, 'GraduationRate_Processed.csv')
-
-    process_graduation_rate_data(raw_dir, output_file)

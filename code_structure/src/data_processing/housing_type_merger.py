@@ -94,8 +94,3 @@ def merge_housing_type_data(input_folder="data/raw/housing-types", output_folder
     except Exception as e:
         logging.error(f"An unexpected error occurred during the merge process: {e}")
         return None
-
-if __name__ == "__main__":
-    # Example of how to run the function directly
-    logging.info("Running housing type merger script directly.")
-    merge_housing_type_data()

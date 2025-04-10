@@ -93,12 +93,3 @@ def process_educators_data(input_path, output_path):
         logging.error("Input file for educators processing not found. Aborting.")
     except Exception as e:
         logging.error(f"An unexpected error occurred during the educators processing pipeline: {e}")
-
-if __name__ == '__main__':
-    # Example usage: Define paths relative to the project root
-    raw_dir = 'data/raw/education_datasets'
-    processed_dir = 'data/processed/education'
-    input_file = os.path.join(raw_dir, 'Educators in public elementary and secondary schools.csv')
-    output_file = os.path.join(processed_dir, 'Educators_Processed.csv')
-
-    process_educators_data(input_file, output_file)

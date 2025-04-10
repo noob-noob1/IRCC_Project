@@ -111,12 +111,3 @@ def process_epi_data(input_path, output_path):
         logging.error(f"Missing expected column during EPI processing: {e}. Aborting.")
     except Exception as e:
         logging.error(f"An unexpected error occurred during the EPI processing pipeline: {e}")
-
-if __name__ == '__main__':
-    # Example usage: Define paths relative to the project root
-    raw_dir = 'data/raw/education_datasets'
-    processed_dir = 'data/processed/education'
-    input_file = os.path.join(raw_dir, 'Education price index (EPI), elementary and secondary.csv')
-    output_file = os.path.join(processed_dir, 'EPI_Processed.csv')
-
-    process_epi_data(input_file, output_file)
