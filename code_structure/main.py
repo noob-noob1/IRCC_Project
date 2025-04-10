@@ -65,7 +65,7 @@ PROCESSED_EDUCATION_DIR = os.path.join(PROCESSED_DATA_DIR, 'education')
 
 # Processed & Output file paths
 FINAL_POPULATION_DEMOGRAPHICS_FILE = os.path.join(PROCESSED_DATA_DIR, 'Population_Demographics_by_Year_and_Province_and_Canada.csv') # New output file
-FINAL_METRICS_FILE = os.path.join(PROCESSED_DATA_DIR, 'Population_Metrics_by_Year_and_Province.csv') # Keep for separate metrics calculation
+FINAL_METRICS_FILE = os.path.join(MODELS_DIR, 'Population_Metrics_by_Year_and_Province.csv') # Keep for separate metrics calculation
 PROCESSED_HOUSEHOLD_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'Household_Numbers_Processed.csv')
 PROCESSED_HOUSING_STARTED_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'HousingStarted_Processed.csv')
 PROCESSED_NHPI_FILE = os.path.join(PROCESSED_HOUSING_DIR, 'NHPI_Processed.csv')
