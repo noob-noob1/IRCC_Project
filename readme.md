@@ -105,6 +105,11 @@ Use the sliders for TR (Temporary Residents) and PR (Permenant Residents) to int
 ## 📬 Contact
 
 For inquiries, collaboration, or suggestions:
+      
+      Sree Sankaran Chackoth
+   - 📧 chac0015@algonquinlive.com
+- 🔗 [LinkedIn Profile](https://www.linkedin.com/in/sreesankaranc)
+- 🌐 [Project Website or Portfolio](https://www.github.com/just-sree)
 
 - 📧 soni0050@algonquinlive.com
 - 🔗 [LinkedIn Profile](https://www.linkedin.com)
